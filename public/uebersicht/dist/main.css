@@ -13,7 +13,7 @@ body
 {
     overflow: hidden;
     background: rgb(30, 30, 30);
-    cursor: url(assets/images/68af5bb0e65af63e.svg) 5 5, auto;
+    cursor: url(assets/images/1d1b204b9bfd970f.svg) 5 5, auto;
 }
 
 .webgl
@@ -135,7 +135,7 @@ img {
 .filters:hover {
     border-color: #816CFF;
     color: #816CFF;
-    cursor: url(assets/images/1d90fca44bebebc4.svg) 5 5, auto;
+    cursor: url(assets/images/da1094b7e691aebf.svg) 5 5, auto;
 }
 
 .active{
@@ -145,7 +145,7 @@ img {
 .switcher button:hover{
     color: gold;
     background: rgb(35,35, 35);
-    cursor: url(assets/images/1d90fca44bebebc4.svg) 5 5, auto;
+    cursor: url(assets/images/da1094b7e691aebf.svg) 5 5, auto;
 }
 
 #starter {
@@ -166,7 +166,7 @@ img {
     cursor:pointer;
     border-color: #816CFF;
     transition: border ease-in-out 0.5s;
-    cursor: url(assets/images/1d90fca44bebebc4.svg) 5 5, auto;
+    cursor: url(assets/images/da1094b7e691aebf.svg) 5 5, auto;
 }
 
 
@@ -206,7 +206,7 @@ img {
   /* The slider */
   .slider {
     position: absolute;
-    cursor: url(assets/images/1d90fca44bebebc4.svg) 5 5, auto;
+    cursor: url(assets/images/da1094b7e691aebf.svg) 5 5, auto;
     top: 0;
     left: 0;
     right: 0;

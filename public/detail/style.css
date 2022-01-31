@@ -75,6 +75,7 @@ position: absolute;
 margin: 2rem;
 width: 12rem;
 z-index: 3;
+cursor: url(static/cursor-hand.svg) 5 5, auto;
 }
 
 video {
@@ -89,6 +90,12 @@ video {
     margin: 2.5rem;
     right: 26.5%;
     z-index: 4;
+    cursor: url(static/cursor-hand.svg) 5 5, auto;
+    transition: all 2s;
+}
+
+.x:hover{
+    height: 6%;
 }
 
 .arrow-left {
@@ -97,6 +104,7 @@ video {
     left: 2.5rem;
     top: 45%;
     z-index: 4;
+    cursor: url(static/cursor-hand.svg) 5 5, auto;
 }
 
 .arrow-right {
@@ -105,4 +113,5 @@ video {
     top: 45%;
     right: 5%;
     z-index: 4;
+    cursor: url(static/cursor-hand.svg) 5 5, auto;
 }

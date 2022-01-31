@@ -3,6 +3,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 
+
+
+
 const $ = require("jquery");
 /**
  * Base
@@ -103,7 +106,7 @@ function onPointerMove( event ) {
 
 let loadLandingPage = true;
 let loadTablePage = false;
-
+let redirectId = 0;
 /**
  * Ovverview Page
  */
@@ -128,15 +131,20 @@ const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1)
 function createTable(filterVar) {
   console.log(filterVar);
   // rows and cols for the grid
-  let row = 0;
-  let col = 0;
+  let row = Math.round((118 / 16) / 2) - 1;
+  let col = -6;
   let c = 0;
+  let pos = 0;
   let filteredElements = []
 
   $.getJSON("periodic-table.json", function (data) {
     if(filterVar){
       for(let i = 0; i < data.length; i++){
         if(filterVar === data[i].groupBlock || filterVar === data[i].standardState || filterVar === data[i].bondingType){
+          if (col > 11) {
+            row--;
+            col = 0;
+          }
           filteredElements[c] = i+1
           console.log(data[i].name);
           console.log(c);
@@ -144,35 +152,41 @@ function createTable(filterVar) {
             // color: 0xFFFFFF,
             map: textures[filteredElements[c]],
         }))
+        object.name = i;
           targets.table.push(object);
           // add cubes to scene
           scene.add(targets.table[c]);
-          // targets.table[i].position.x = 6 - col * 1.8;
-          // targets.table[i].position.y = row * 2.5;
+          //targets.table[i].position.x = 6 - col * 1.8;
+          //targets.table[i].position.y = row * 2.5;
+          col++;
         } 
         c++   
+        pos++;
       }
       console.log(targets.table);
+      raycasterTestObjects = targets.table;
     }
     else{
       for(let i = 0; i < data.length; i++){
         // grid
-      if (col > 11) {
+      if (col > 10) {
         row--;
-        col = 0;
+        col = -6;
       }
       const object = new THREE.Mesh(geometryBox, new THREE.MeshBasicMaterial({
         // color: 0xFFFFFF,
         map: textures[i],
     }))
+    object.name = i;
       targets.table.push(object);
-      targets.table[i].position.x = 6 - col * 1.8;
+      targets.table[i].position.x = col * 1.8;
       targets.table[i].position.y = row * 2.5;
       // add cubes to scene
       scene.add(targets.table[i]);
       // up the column
       col++;
-      }      
+      }   
+      raycasterTestObjects = targets.table;   
     }
   });
 }
@@ -187,8 +201,10 @@ function createHelix() {
 
       const object = new THREE.Mesh(geometryBox, new THREE.MeshBasicMaterial({
         // color: 0xFFFFFF,
-        map: textures[i],
+        map: textures[i]
     }))
+      object.name = i;
+      
       object.position.setFromCylindricalCoords(8, theta, y);
 
       vector.x = object.position.x * 2;
@@ -202,6 +218,9 @@ function createHelix() {
       scene.add(targets.helix[i]);
     }
   });
+  raycasterTestObjects = targets.helix;
+  camera.position.set(0, 0, -15);
+  controls.target.set(0, -1.5, 0);
 }
 
 // raycaster
@@ -251,7 +270,7 @@ document.getElementById("starter").addEventListener("click", () => {
   //Controls resetten
   controls.target.set( 0, -1.5, 0 );
   //Verschieben vehindern - Helixansicht
-  controls.enablePan = false;
+  // controls.enablePan = false;
 });
 
 
@@ -290,7 +309,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  * Animate
  */
 const clock = new THREE.Clock();
-let raycasterTestObjects = targets.table;
+let raycasterTestObjects = targets.helix;
 let currentIntersect
 
 const tick = () => {
@@ -343,6 +362,10 @@ const tick = () => {
         if(!currentIntersect)
         {
             console.log('mouse enter')
+            console.log(intersects[0]);
+            redirectId = intersects[0].object.name + 1;
+            console.log(redirectId);
+            
         }
     
         currentIntersect = intersects[0]
@@ -351,7 +374,9 @@ const tick = () => {
     {
         if(currentIntersect)
         {
-            console.log('mouse leave')
+            console.log('mouse leave');
+            redirectId = 0;
+            console.log(redirectId);
         }
   
       currentIntersect = null
@@ -369,7 +394,7 @@ tick();
 
 
 // button functionality
-
+/*
 $(".btn").on("click", (event) => {
   event.preventDefault;
 
@@ -401,6 +426,42 @@ $(".btn").on("click", (event) => {
   controls.enablePan = false;
 }
 });
+*/
+
+$('.btn').on('click', () => {
+  if($('.btn').hasClass('active')){
+    $('.btn').removeClass('active');
+    $('.state').text('Helix');
+    for (let i = 0; i < targets.table.length; i++) {
+      scene.remove(targets.table[i]);
+    }
+    createHelix();
+  }
+  else{
+    $(".btn").addClass("active");
+    $('.state').text('Table');
+    for (let i = 0; i < targets.helix.length; i++) {
+      scene.remove(targets.helix[i]);
+    }
+    createTable();
+    //Camera neu positionieren
+    camera.position.set(2.28, -8.75, 14.62);
+    //Camera zeigt auf
+    controls.target.set( 3, -5, 0.5);
+    controls.enablePan = true;
+  }
+})
+
+$('.logo-helix').on('click', () => {
+  
+  $('.btn').removeClass('active');
+    $('.state').text('Helix');
+    for (let i = 0; i < targets.table.length; i++) {
+      scene.remove(targets.table[i]);
+    }
+    createHelix();
+    
+})
 
 $(".mg1").on("change", () => {
   let s = $('.mg1').val();
@@ -451,3 +512,25 @@ $(".bt").on("change", () => {
 
 const gridHelper = new THREE.GridHelper(100,100)
 // scene.add(gridHelper)
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+let reroute = urlParams.get("started");
+
+if(reroute) {
+    $('#starter').click();
+}
+
+
+
+$(() => {
+  $(window).on('dblclick', () => {
+    if(redirectId && redirectId > 0){
+      window.location.replace('/detail?id=' + redirectId);
+    }  
+    console.log(camera.position);
+    console.log(camera)
+  })
+})
