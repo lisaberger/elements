@@ -1,0 +1,21 @@
+@layer reset, theme;
+
+@import './_reset.scss' layer(reset);
+@import './_fonts.scss' layer(theme);
+
+:root {
+    background: #1e1e1e;
+    font-family: 'M PLUS Rounded 1c', Inter, system-ui, Avenir, Helvetica, Arial,
+        sans-serif;
+    cursor:
+        url(cursor-arrow.svg) 5 5,
+        auto;
+    line-height: 1.5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}

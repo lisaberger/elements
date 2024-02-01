@@ -1,0 +1,151 @@
+.logo {
+    position: absolute;
+    margin: 2.5rem;
+    width: 12rem;
+    z-index: 3;
+    cursor:
+        url(/cursor-hand.svg) 5 5,
+        auto;
+}
+
+.view {
+    width: 80%;
+    position: relative;
+}
+
+.info {
+    width: 20%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    color: white;
+    background-color: #816cff;
+}
+
+.container {
+    z-index: 2;
+    display: flex;
+    background-color: rgb(30, 30, 30);
+}
+
+#stage {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    overflow: hidden;
+    z-index: 2;
+    background-color: rgb(30, 30, 30);
+}
+
+#stage canvas {
+    z-index: 3;
+}
+
+.symbol-block,
+.attributes {
+    margin-left: 5%;
+}
+
+h1 {
+    font-size: 6rem;
+    line-height: 6rem;
+}
+
+.symbol {
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 1.3rem;
+    padding: 0.2rem;
+}
+
+.attributes p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    width: 80%;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+.att-title {
+    font-weight: bold;
+    position: relative;
+}
+
+.att-title::after {
+    content: '?';
+    position: absolute;
+    top: -4;
+    font-size: 0.75rem;
+    right: -7px;
+    color: #fff;
+}
+
+video {
+    width: 50%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.gif {
+    width: 53%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.x {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    margin: 3rem 2.5rem;
+    right: 26.5%;
+    z-index: 4;
+    cursor:
+        url(/cursor-hand.svg) 5 5,
+        auto;
+    transition: all 0.5s;
+}
+
+.x:hover {
+    height: 50px;
+    width: 50px;
+}
+
+.arrow {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top: 45%;
+    z-index: 4;
+    cursor:
+        url(/cursor-hand.svg) 5 5,
+        auto;
+    transition: all 0.5s;
+}
+
+.arrow:hover {
+    height: 50px;
+    width: 50px;
+}
+
+.left {
+    left: 5%;
+}
+
+.right {
+    right: 5%;
+}
+
+.cloud,
+.fluid,
+.cube {
+    display: none;
+}
