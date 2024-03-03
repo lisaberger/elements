@@ -1,94 +1,73 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useMemo } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
-import * as THREE from 'three';
+import { Points } from '@react-three/drei';
+import { AdditiveBlending, TextureLoader } from 'three';
+
+// Help
+// https://blog.maximeheckel.com/posts/the-magical-world-of-particles-with-react-three-fiber-and-shaders/
 
 interface ParticlesProps {
-    mouseX: number;
-    mouseY: number;
+    count: number;
 }
 
-const Particles: FC<ParticlesProps> = ({ mouseX, mouseY }) => {
-    const mesh = useRef();
-    const vertices = [];
-    const materials = [];
+const Particles: FC<ParticlesProps> = ({ count }) => {
+    const points = useRef();
 
-    let particles;
+    // Create random initital particle positions
+    const particlePositions = useMemo(() => {
+        // Create a Float32Array of count*3 length
+        // -> we are going to generate the x, y, and z values for 2000 particles
+        // -> thus we need 6000 items in this array
+        const positions = new Float32Array(count * 3);
 
-    const parameters = [
-        [[1.0, 0.2, 0.5], 0.05],
-        [[0.95, 0.1, 0.5], 0.3],
-        [[0.9, 0.05, 0.5], 0.2],
-        [[0.85, 0, 0.5], 0.3],
-        [[0.8, 0, 0.5], 0.1],
-    ];
+        for (let i = 0; i < count; i++) {
+            // Generate random values for x, y, and z on every loop
+            let x = Math.random() * 20 - 10;
+            let y = Math.random() * 20 - 10;
+            let z = Math.random() * 20 - 10;
 
-    /**
-     * Create random initital partical positions
-     */
-    for (let i = 0; i < 1100; i++) {
-        const x = Math.random() * 20 - 10;
-        const y = Math.random() * 20 - 10;
-        const z = Math.random() * 20 - 10;
-        vertices.push(x, y, z);
-    }
+            // We add the 3 values to the attribute array for every loop
+            positions.set([x, y, z], i * 3);
+        }
 
-    /**
-     * Load particle texture
-     */
-    const texture = useLoader(THREE.TextureLoader, 'particle.png');
+        return positions;
+    }, [count]);
 
-    /**
-     * Create new particle cloud (geometry)
-     */
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-        'position',
-        new THREE.Float32BufferAttribute(vertices, 3),
-    );
+    // Load particle texture
+    const texture = useLoader(TextureLoader, 'particle.png');
 
-    for (let i = 0; i < parameters.length; i++) {
-        const size = parameters[i][1];
+    useFrame((state) => {
+        const { clock } = state;
 
-        materials[i] = new THREE.PointsMaterial({
-            size: size,
-            color: 0x816cff,
-            map: texture,
-            blending: THREE.AdditiveBlending,
-            depthTest: false,
-            transparent: true,
-            alphaMap: texture,
-            alphaTest: 0.001,
-            depthTest: false,
-        });
+        if (points.current) {
+            for (let i = 0; i < count; i++) {
+                const i3 = i * 3;
 
-        particles = new THREE.Points(geometry, materials[i]);
-        particles.rotation.x = Math.random() * 3;
-        particles.rotation.y = Math.random() * 3;
-        particles.rotation.z = Math.random() * 3;
-    }
+                points.current.geometry.attributes.position.array[i3] +=
+                    Math.sin(clock.elapsedTime + Math.random() * 1) * 0.001;
+                points.current.geometry.attributes.position.array[i3 + 1] +=
+                    Math.cos(clock.elapsedTime + Math.random() * 1) * 0.001;
+                points.current.geometry.attributes.position.array[i3 + 2] +=
+                    Math.sin(clock.elapsedTime + Math.random() * 1) * 0.001;
+            }
 
-    // const clock = new THREE.Clock();
-
-    useFrame((state, delta) => {
-        // const elapsedTime = clock.getElapsedTime();
-
-        if (mesh.current) {
-            mesh.current.position.x +=
-                (mouseX - mesh.current.position.x) * 0.000008;
-            mesh.current.position.y +=
-                (-mouseY - mesh.current.position.y) * 0.000008;
-
-            // Loop through the children of the mesh and update particles
-            mesh.current.children.forEach((object, index) => {
-                if (object instanceof THREE.Points) {
-                    object.rotation.y =
-                        delta * (index < 4 ? index + 1 : -(index + 1)) * 0.003;
-                }
-            });
+            points.current.geometry.attributes.position.needsUpdate = true;
         }
     });
 
-    return <primitive ref={mesh} object={particles} />;
+    return (
+        <Points ref={points} positions={particlePositions}>
+            <pointsMaterial
+                size={0.1}
+                color={0x816cff}
+                map={texture}
+                blending={AdditiveBlending}
+                transparent
+                alphaMap={texture}
+                alphaTest={0.001}
+            />
+        </Points>
+    );
 };
 
 export default Particles;
