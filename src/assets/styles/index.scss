@@ -1,7 +1,22 @@
-@layer reset, theme;
+@layer reset, theme, utils;
 
-@import './_reset.scss' layer(reset);
-@import './_fonts.scss' layer(theme);
+@layer reset {
+    @import './reset';
+}
+
+@layer theme {
+    @layer font {
+        @import './fonts';
+    }
+
+    @layer color {
+        @import './color';
+    }
+}
+
+@layer utils {
+    @import 'primeflex/primeflex.scss';
+}
 
 :root {
     background: #1e1e1e;

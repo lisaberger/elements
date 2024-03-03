@@ -1,0 +1,15 @@
+.start {
+    height: 100vh;
+    position: relative;
+    color: #ffeded;
+    text-align: center;
+    justify-content: center;
+
+    &__logo {
+        width: 250px;
+    }
+
+    &__text {
+        max-width: 400px;
+    }
+}
