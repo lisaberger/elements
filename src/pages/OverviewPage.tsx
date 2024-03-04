@@ -1,15 +1,15 @@
 import { Canvas } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import { fetchElements } from '../utils/fetchElements';
+import { fetchElements } from '@/utils/fetchElements';
 import { OrbitControls } from '@react-three/drei';
-import type { Element } from '../types/Element.interface';
+import type { Element } from '@/types/Element.interface';
 import Table from '@/components/overview/Table';
 import Helix from '@/components/overview/Helix';
 import Filters from '@/components/overview/filters/Filters';
 import Header from '@/components/overview/Header';
 
 const OverviewPage = () => {
-    const [elements, setElements] = useState<null | []>([]);
+    const [elements, setElements] = useState<Element[]>([]);
     const [type, setType] = useState<'Helix' | 'Table'>('Helix');
     const [selectedFilters, setSelectedFilters] = useState({});
 
