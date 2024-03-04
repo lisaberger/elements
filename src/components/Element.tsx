@@ -1,57 +1,28 @@
-import { RoundedBox } from '@react-three/drei';
-import { useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as THREE from 'three';
+import { Vector3, Texture } from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/Addons.js';
 
-// const Element = ({ texture, position }) => {
-//     const [boxColor, setboxColor] = useState('#FFF');
-
-//     const changeBoxColor = () => {
-//         setboxColor('#CBC3FF');
-//     };
-
-//     return (
-//         <RoundedBox
-//             args={[1, 1, 1]}
-//             smoothness={10}
-//             radius={0.1}
-//             onPointerEnter={changeBoxColor}
-//             position={position}
-//         >
-//             <meshBasicMaterial map={texture} color={boxColor} />
-//         </RoundedBox>
-//     );
-// };
-
-const Element: FC<{
-    position: THREE.Vector3;
-    texture: THREE.Texture;
+interface ElementProps {
+    position: Vector3;
+    texture: Texture;
     index: number;
-}> = ({ position, texture, index }) => {
+}
+
+const Element: FC<ElementProps> = ({ position, texture, index }) => {
     const [hovered, setHovered] = useState(false);
-    const vector = new THREE.Vector3();
-    const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1);
+    const boxRef = useRef();
+    const vector = useMemo(() => new Vector3(), []);
 
-    const object = useMemo(() => {
-        const newObj = new THREE.Mesh(
-            geometryBox,
-            new THREE.MeshBasicMaterial({
-                map: texture,
-                color: hovered ? '#CBC3FF' : '#FFF',
-            }),
-        );
+    const boxColor = hovered ? '#CBC3FF' : '#FFF';
 
-        newObj.position.copy(position);
-        vector.x = newObj.position.x * 2;
-        vector.y = newObj.position.y;
-        vector.z = newObj.position.z * 2;
+    useEffect(() => {
+        vector.set(position.x * 2, position.y, position.z * 2);
 
-        newObj.lookAt(vector);
-        newObj.name = index + 1;
-
-        return newObj;
-    }, [geometryBox, hovered, index, position, texture, vector]);
+        if (boxRef.current) {
+            boxRef.current.lookAt(vector);
+        }
+    }, [position, vector]);
 
     const navigate = useNavigate();
 
@@ -59,14 +30,42 @@ const Element: FC<{
         navigate(`/element/${index + 1}`);
     };
 
+    const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1);
+
     return (
         <mesh
+            ref={boxRef}
+            geometry={geometryBox}
+            name={(index + 1).toString()}
+            position={position}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
             onDoubleClick={onClickHandler}
         >
-            <primitive object={object} />
+            <meshBasicMaterial
+                toneMapped={false}
+                color={boxColor}
+                map={texture}
+            />
         </mesh>
+
+        // TODO: Find way to use roundedBox (texture mapping issue)
+        //         <RoundedBox
+        //             ref={boxRef}
+        //             name={(index + 1).toString()}
+        //             position={position}
+        //             args={[1, 1, 1]}
+        //             radius={0.1}
+        //             onPointerOver={() => setHovered(true)}
+        //             onPointerOut={() => setHovered(false)}
+        //             onDoubleClick={onClickHandler}
+        //         >
+        //             <meshBasicMaterial
+        //                 toneMapped={false}
+        //                 color={boxColor}
+        //                 map={texture}
+        //             />
+        //         </RoundedBox>
     );
 };
 

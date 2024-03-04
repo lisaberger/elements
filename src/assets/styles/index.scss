@@ -18,8 +18,8 @@
     @import 'primeflex/primeflex.scss';
 }
 
-:root {
-    background: #1e1e1e;
+html {
+    background: var(--background-color);
     font-family: 'M PLUS Rounded 1c', Inter, system-ui, Avenir, Helvetica, Arial,
         sans-serif;
     cursor:

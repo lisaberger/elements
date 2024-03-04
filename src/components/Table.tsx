@@ -1,14 +1,14 @@
-import { useThree, useLoader } from '@react-three/fiber';
 import { FC, useMemo } from 'react';
+import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
-import Element from '@/components/Element';
+import Element from './Element';
 import type { Element as IElement } from '../types/Element.interface';
 
-interface HelixProps {
+interface TableProps {
     elements: IElement[];
 }
 
-const Helix: FC<HelixProps> = ({ elements }) => {
+const Table: FC<TableProps> = ({ elements }) => {
     const { camera } = useThree();
 
     const textures = useLoader(
@@ -19,31 +19,38 @@ const Helix: FC<HelixProps> = ({ elements }) => {
         ),
     );
 
-    camera.position.set(0, 0, -15);
+    // rows and cols for the grid
+    let row = Math.round(118 / 16 / 2) - 1;
+    let col = -8;
+    let counter = 0;
 
-    const helixElements = useMemo(() => {
+    camera.position.set(0, 0, -25);
+
+    const tableElements = useMemo(() => {
         const result: JSX.Element[] = [];
 
         for (let i = 0; i < elements.length; i++) {
-            const theta = i * 0.175 + Math.PI;
-            const y = -(i * 0.05) + 2;
+            if (col > 8) {
+                row--;
+                col = -8;
+            }
             result.push(
                 <Element
                     key={i}
-                    position={new Vector3().setFromCylindricalCoords(
-                        8,
-                        theta,
-                        y,
-                    )}
+                    position={new Vector3(col * 1.8, row * 2.5, 0)}
                     texture={textures[i]}
                     index={i}
                 />,
             );
+            // increase the column
+            col++;
+            // increase c for each found element
+            counter++;
         }
         return result;
     }, [elements, textures]);
 
-    return <>{helixElements}</>;
+    return <>{tableElements}</>;
 };
 
-export default Helix;
+export default Table;

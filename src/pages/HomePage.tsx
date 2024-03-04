@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
-import Particles from '@/components/Particles';
-import Start from '@/components/Start';
+import Particles from '@/components/start/Particles';
+import Start from '@/components/start/Start';
 
 const HomePage = () => {
     return (
