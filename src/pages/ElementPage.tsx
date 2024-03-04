@@ -8,6 +8,8 @@ import styles from './ElementPage.module.scss';
 import Logo from '../components/shared/Logo';
 import ElementInfo from '../components/ElementInfo';
 import Icon from '../components/Icon';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
 const ElementPage = () => {
     const { id } = useParams();
@@ -54,7 +56,28 @@ const ElementPage = () => {
                     </div>
 
                     <div className="z-1">
-                        <Atom element={element} />
+                        <Canvas
+                            style={{ position: 'absolute' }}
+                            camera={{
+                                fov: 45,
+                                near: 0.1,
+                                far: 100000,
+                                position: [50, -100, 10000],
+                            }}
+                        >
+                            <Atom element={element} />
+                            <OrbitControls />
+                            <directionalLight
+                                position={[100, 100, -100]}
+                                color={0xffffff}
+                                intensity={0.5}
+                            />
+                            <hemisphereLight
+                                position={[0, 5100, 0]}
+                                color={0xffffff}
+                                intensity={1.25}
+                            />
+                        </Canvas>
                         <span className={styles.left}>
                             <Icon
                                 icon="arrow-left"
