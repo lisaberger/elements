@@ -27,7 +27,7 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
     const navigate = useNavigate();
 
     const onClickHandler = () => {
-        navigate(`/element/${index + 1}`);
+        navigate(`/element/${index}`);
     };
 
     const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1);

@@ -14,7 +14,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
     const textures = useLoader(
         TextureLoader,
         Array.from(
-            { length: elements.length },
+            { length: 118 },
             (_, i) => `/textures/textures_elements_${i}.png`,
         ),
     );
@@ -36,7 +36,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
                         y,
                     )}
                     texture={textures[+elements[i].atomicNumber - 1]}
-                    index={i}
+                    index={+elements[i].atomicNumber}
                 />,
             );
         }

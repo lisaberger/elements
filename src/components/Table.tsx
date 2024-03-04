@@ -24,7 +24,7 @@ const Table: FC<TableProps> = ({ elements }) => {
     let col = -8;
     let counter = 0;
 
-    camera.position.set(0, 0, -25);
+    camera.position.set(0, 0, -15);
 
     const tableElements = useMemo(() => {
         const result: JSX.Element[] = [];
