@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import Filter from './Filter';
+import Filter from '@/components/overview/filters/Filter';
 
 interface FiltersProps {
     onFiltersChange: (filters) => void;

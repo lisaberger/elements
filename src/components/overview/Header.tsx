@@ -1,7 +1,7 @@
-import Logo from '@/components/shared/Logo';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SwitchButton from '../components/SwitchButton';
-import { FC, useState } from 'react';
+import SwitchButton from '@/components/overview/SwitchButton';
+import Logo from '@/components/shared/Logo';
 
 interface HeaderProps {
     onTypeChange: (type: 'Helix' | 'Table') => void;

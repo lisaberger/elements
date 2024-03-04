@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { fetchElementByAtomicNumber } from '../utils/fetchElements';
 import { useNavigate, useParams } from 'react-router-dom';
-import Atom from '../components/Atom';
-import { Element } from '../types/Element.interface';
-
-import styles from './ElementPage.module.scss';
-import Logo from '../components/shared/Logo';
-import ElementInfo from '../components/ElementInfo';
-import Icon from '../components/Icon';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+
+import type { Element } from '@/types/Element.interface';
+import Atom from '@/components/element/Atom';
+import Logo from '@/components/shared/Logo';
+import Info from '@/components/element/Info';
+import Icon from '@/components/shared/Icon';
+import styles from './ElementPage.module.scss';
 
 const ElementPage = () => {
     const { id } = useParams();
@@ -48,10 +48,10 @@ const ElementPage = () => {
 
     return (
         <>
-            <main className={styles.container}>
-                <section className={styles.view}>
+            <main className="h-full flex z-2">
+                <section className="w-9 relative">
                     <div className="p-4 absolute z-4 flex w-full align-items-center justify-content-between">
-                        <Logo size="medium" />
+                        <Logo size="medium" onClick={returnHandler} />
                         <Icon icon="x" onClick={returnHandler} />
                     </div>
 
@@ -65,7 +65,7 @@ const ElementPage = () => {
                                 position: [50, -100, 10000],
                             }}
                         >
-                            <Atom element={element} />
+                            {element && <Atom element={element} />}
                             <OrbitControls />
                             <directionalLight
                                 position={[100, 100, -100]}
@@ -78,13 +78,13 @@ const ElementPage = () => {
                                 intensity={1.25}
                             />
                         </Canvas>
-                        <span className={styles.left}>
+                        <span className="p-4 absolute z-4 top-50">
                             <Icon
                                 icon="arrow-left"
                                 onClick={() => onArrowClickHandler('left')}
                             />
                         </span>
-                        <span className={styles.right}>
+                        <span className="right-0 top-50 p-4 absolute">
                             <Icon
                                 icon="arrow-right"
                                 onClick={() => onArrowClickHandler('right')}
@@ -92,8 +92,9 @@ const ElementPage = () => {
                         </span>
                     </div>
                 </section>
-                <section className={styles.info}>
-                    <ElementInfo element={element} />
+
+                <section className="w-3 bg-primary">
+                    <Info element={element} />
                 </section>
             </main>
         </>

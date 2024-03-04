@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import type { Element } from '../types/Element.interface';
+import type { Element } from '@/types/Element.interface';
 
-interface ElementInfoProps {
+interface InfoProps {
     element: Element;
 }
 
-const ElementInfo: FC<ElementInfoProps> = ({ element }) => {
+const ElementInfo: FC<InfoProps> = ({ element }) => {
     const standardStates = {
         liquid: '/fluid_gif_800px_transparent.gif',
         solid: '/cube_gif_800px_transparent.gif',
@@ -13,7 +13,7 @@ const ElementInfo: FC<ElementInfoProps> = ({ element }) => {
     };
 
     return (
-        <div className="flex flex-column align-items-center">
+        <div className="flex flex-column align-items-center text-white">
             <div className="flex flex-column align-items-center">
                 <p className="text-">{element?.atomicNumber}</p>
                 <h1 className="text-8xl line-height-1">{element?.symbol}</h1>
