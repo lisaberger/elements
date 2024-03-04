@@ -9,7 +9,6 @@ import Atom from '@/components/element/Atom';
 import Logo from '@/components/shared/Logo';
 import Info from '@/components/element/Info';
 import Icon from '@/components/shared/Icon';
-import styles from './ElementPage.module.scss';
 
 const ElementPage = () => {
     const { id } = useParams();

@@ -12,7 +12,7 @@ const Header: FC<HeaderProps> = ({ onTypeChange, type }) => {
     const navigate = useNavigate();
 
     const onClickHandler = () => {
-        navigate('/all');
+        navigate('/');
     };
 
     const typeChange = () => {
