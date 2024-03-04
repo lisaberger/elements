@@ -14,7 +14,7 @@ const Table: FC<TableProps> = ({ elements }) => {
     const textures = useLoader(
         TextureLoader,
         Array.from(
-            { length: elements.length },
+            { length: 118 },
             (_, i) => `/textures/textures_elements_${i}.png`,
         ),
     );
@@ -38,8 +38,8 @@ const Table: FC<TableProps> = ({ elements }) => {
                 <Element
                     key={i}
                     position={new Vector3(col * 1.8, row * 2.5, 0)}
-                    texture={textures[i]}
-                    index={i}
+                    texture={textures[+elements[i].atomicNumber]}
+                    index={+elements[i].atomicNumber}
                 />,
             );
             // increase the column
