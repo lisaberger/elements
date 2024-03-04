@@ -93,7 +93,7 @@ const ElementPage = () => {
                     </div>
                 </section>
 
-                <section className="w-3 bg-primary">
+                <section className="w-3 bg-primary flex flex-column align-items-center justify-content-center">
                     <Info element={element} />
                 </section>
             </main>
