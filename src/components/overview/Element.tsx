@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Vector3, Texture } from 'three';
+import { Vector3, Texture, type Mesh } from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/Addons.js';
 
 interface ElementProps {
@@ -11,17 +11,14 @@ interface ElementProps {
 
 const Element: FC<ElementProps> = ({ position, texture, index }) => {
     const [hovered, setHovered] = useState(false);
-    const boxRef = useRef();
+    const boxRef = useRef<Mesh>(null!);
     const vector = useMemo(() => new Vector3(), []);
 
     const boxColor = hovered ? '#CBC3FF' : '#FFF';
 
     useEffect(() => {
         vector.set(position.x * 2, position.y, position.z * 2);
-
-        if (boxRef.current) {
-            boxRef.current.lookAt(vector);
-        }
+        boxRef.current.lookAt(vector);
     }, [position, vector]);
 
     const navigate = useNavigate();

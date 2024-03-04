@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './Logo.module.scss';
-import logo from '/elements-rgb-wort-bild.svg';
+import logo from '/logo/elements-rgb-wort-bild.svg';
 
 interface LogoProps {
     size: 'small' | 'medium' | 'large';
@@ -11,7 +11,9 @@ const Logo: FC<LogoProps> = ({ size, onClick }) => {
     const logoClassName = styles[`logo-${size}`];
 
     const handleClick = () => {
-        onClick();
+        if (onClick) {
+            onClick();
+        }
     };
 
     return (

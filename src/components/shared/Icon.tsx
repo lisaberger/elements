@@ -6,9 +6,9 @@ interface IconProps {
     onClick?: () => void;
 }
 
-import xIcon from '/x.png';
-import arrowLeftIcon from '/arrow-left.png';
-import arrowRightIcon from '/arrow-right.png';
+import xIcon from '/icons/x.png';
+import arrowLeftIcon from '/icons/arrow-left.png';
+import arrowRightIcon from '/icons/arrow-right.png';
 
 const Icon: FC<IconProps> = ({ icon, onClick }) => {
     let iconSource;
@@ -26,7 +26,9 @@ const Icon: FC<IconProps> = ({ icon, onClick }) => {
     }
 
     const handleClick = () => {
-        onClick();
+        if (onClick) {
+            onClick();
+        }
     };
 
     return (

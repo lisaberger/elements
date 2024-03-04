@@ -9,7 +9,7 @@ interface AtomProps {
 }
 
 const Atom: FC<AtomProps> = ({ element }) => {
-    const atomVerteilung = determineAtomConfiguration(element);
+    const atomConfiguration = determineAtomConfiguration(element);
 
     const atomicNumber = +element.atomicNumber;
     // total number of electrons
@@ -27,7 +27,7 @@ const Atom: FC<AtomProps> = ({ element }) => {
     return (
         <>
             <AtomCore nucleusNumber={nucleusNumber} />
-            <AtomShell electronDistribution={atomVerteilung} />
+            <AtomShell electronDistribution={atomConfiguration} />
         </>
     );
 };
