@@ -35,7 +35,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
                         theta,
                         y,
                     )}
-                    texture={textures[i]}
+                    texture={textures[+elements[i].atomicNumber - 1]}
                     index={i}
                 />,
             );

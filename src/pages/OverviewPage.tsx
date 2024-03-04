@@ -7,10 +7,14 @@ import { OrbitControls } from '@react-three/drei';
 
 import Filters from '../components/Filters';
 import Header from '../components/Header';
+import type { Element } from '../types/Element.interface';
 
 const OverviewPage = () => {
     const [elements, setElements] = useState<null | []>([]);
     const [type, setType] = useState<'Helix' | 'Table'>('Helix');
+    const [selectedFilters, setSelectedFilters] = useState({});
+
+    const [filteredElements, setFilteredElements] = useState([]);
 
     useEffect(() => {
         const fetchElementsData = async () => {
@@ -29,13 +33,46 @@ const OverviewPage = () => {
         setType(eventType);
     };
 
+    const handleFiltersChange = (filters) => {
+        setSelectedFilters(filters);
+    };
+
+    useEffect(() => {
+        if (elements.length > 0) {
+            const filteredElements = elements.filter((element: Element) => {
+                // Überprüfen, ob das Element den ausgewählten Filtern entspricht
+                const matchesMainGroup =
+                    !selectedFilters.groupBlock ||
+                    element.groupBlock === selectedFilters.groupBlock;
+                const matchesStandardStates =
+                    !selectedFilters.standardState ||
+                    element.standardState === selectedFilters.standardState;
+                const matchesBondingType =
+                    !selectedFilters.bondingType ||
+                    element.bondingType === selectedFilters.bondingType;
+
+                // Das Element wird beibehalten, wenn es allen ausgewählten Filtern entspricht
+                return (
+                    matchesMainGroup &&
+                    matchesStandardStates &&
+                    matchesBondingType
+                );
+            });
+
+            setFilteredElements(filteredElements);
+        }
+    }, [elements, selectedFilters]);
+
+    console.log('filters', selectedFilters);
+    console.log('filteredElements', filteredElements);
+
     return (
         <div>
             <Header type={type} onTypeChange={handleTypeChange} />
-            <Filters />
+            <Filters onFiltersChange={handleFiltersChange} />
             <Canvas style={{ position: 'absolute', zIndex: 1 }}>
-                {type === 'Helix' && <Helix elements={elements} />}
-                {type === 'Table' && <Table elements={elements} />}
+                {type === 'Helix' && <Helix elements={filteredElements} />}
+                {type === 'Table' && <Table elements={filteredElements} />}
                 <OrbitControls
                     minPolarAngle={Math.PI / 2}
                     maxPolarAngle={Math.PI / 2}

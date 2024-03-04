@@ -1,7 +1,12 @@
+import { FC, useState } from 'react';
 import Filter from './Filter';
 
-const Filters = () => {
-    const mainGroupFilters = [
+interface FiltersProps {
+    onFiltersChange: (filters) => void;
+}
+
+const Filters: FC<FiltersProps> = ({ onFiltersChange }) => {
+    const groupBlockOptions = [
         { value: 'nonmetal', label: 'Nonmetals' },
         { value: 'noble gas', label: 'Noble Gasses' },
         { value: 'alkali metal', label: 'Alkali Metals' },
@@ -11,7 +16,7 @@ const Filters = () => {
         { value: 'transition metal', label: 'Transition Metals' },
     ];
 
-    const standardStatesOptions = [
+    const standardStateOptions = [
         { value: 'solid', label: 'Solid' },
         { value: 'liquid', label: 'Liquid' },
         { value: 'gas', label: 'Gas' },
@@ -24,6 +29,20 @@ const Filters = () => {
         { value: 'covalent network', label: 'Covalent Network' },
     ];
 
+    const [selectedFilters, setSelectedFilters] = useState({
+        groupBlock: '',
+        standardState: '',
+        bondingType: '',
+    });
+
+    const handleFilterChange = (id: string, value: string) => {
+        setSelectedFilters({
+            ...selectedFilters,
+            [id]: value,
+        });
+        onFiltersChange(selectedFilters);
+    };
+
     return (
         <section
             style={{
@@ -34,19 +53,22 @@ const Filters = () => {
             className="mb-4 w-full flex justify-content-center px-4 gap-2"
         >
             <Filter
-                options={mainGroupFilters}
-                defaultValue="Maingroup"
-                id="maingroup"
+                options={groupBlockOptions}
+                defaultValue="GroupBlock"
+                id="groupBlock"
+                onFilterChange={handleFilterChange}
             />
             <Filter
-                id="standardstates"
-                options={standardStatesOptions}
-                defaultValue="States"
+                id="standardState"
+                options={standardStateOptions}
+                defaultValue="StandardState"
+                onFilterChange={handleFilterChange}
             />
             <Filter
-                id="bondingtype"
+                id="bondingType"
                 options={bondingTypeOptions}
-                defaultValue="Bondingtype"
+                defaultValue="BondingType"
+                onFilterChange={handleFilterChange}
             />
         </section>
     );
