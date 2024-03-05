@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import type { Element } from '../../types/Element.interface';
-import { determineAtomConfiguration } from '../../utils/determineAtomConfiguration';
-import AtomShell from './AtomShell';
-import AtomCore from './AtomCore';
+import type { Element } from '@/types/Element.interface';
+import { determineAtomConfiguration } from '@/utils/determineAtomConfiguration';
+import AtomShell from '@/components/element/AtomShell';
+import AtomCore from '@/components/element/AtomCore';
 
 interface AtomProps {
     element: Element;
