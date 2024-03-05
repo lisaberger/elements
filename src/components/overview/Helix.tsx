@@ -26,7 +26,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
 
         for (let i = 0; i < elements.length; i++) {
             const theta = i * 0.175 + Math.PI;
-            const y = -(i * 0.05) + 2;
+            const y = -(i * 0.05) + 3;
             result.push(
                 <Element
                     key={i}

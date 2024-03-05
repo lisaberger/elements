@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { fetchElements } from '@/utils/fetchElements';
 import { OrbitControls } from '@react-three/drei';
 import type { Element } from '@/types/Element.interface';
@@ -7,6 +7,7 @@ import Table from '@/components/overview/Table';
 import Helix from '@/components/overview/Helix';
 import Filters from '@/components/overview/filters/Filters';
 import Header from '@/components/overview/Header';
+import Loader from '@/components/shared/Loader';
 
 const OverviewPage = () => {
     const [elements, setElements] = useState<Element[]>([]);
@@ -67,13 +68,15 @@ const OverviewPage = () => {
             <Header type={type} onTypeChange={handleTypeChange} />
             <Filters onFiltersChange={handleFiltersChange} />
             <Canvas style={{ position: 'absolute', zIndex: 1 }}>
-                {type === 'Helix' && <Helix elements={filteredElements} />}
-                {type === 'Table' && <Table elements={filteredElements} />}
-                <OrbitControls
-                    minPolarAngle={Math.PI / 2}
-                    maxPolarAngle={Math.PI / 2}
-                />
-                <ambientLight color={0xcc9ff4} intensity={1} />
+                <Suspense fallback={<Loader />}>
+                    {type === 'Helix' && <Helix elements={filteredElements} />}
+                    {type === 'Table' && <Table elements={filteredElements} />}
+                    <OrbitControls
+                        minPolarAngle={Math.PI / 2}
+                        maxPolarAngle={Math.PI / 2}
+                    />
+                    <ambientLight color={0xcc9ff4} intensity={1} />
+                </Suspense>
             </Canvas>
         </div>
     );
