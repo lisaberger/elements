@@ -1,17 +1,14 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import type { Element } from '@/types/Element.interface';
+import StandardStates from '@/components/element/StandardStates';
+import { Canvas } from '@react-three/fiber';
+import { Stage } from '@react-three/drei';
 
 interface InfoProps {
     element: Element | null;
 }
 
 const Info: FC<InfoProps> = ({ element }) => {
-    const standardStates: { [key: string]: string } = {
-        liquid: '/states/fluid_gif_800px_transparent.gif',
-        solid: '/states/cube_gif_800px_transparent.gif',
-        gas: '/states/cloud_gif_800px_violet.gif',
-    };
-
     return (
         element && (
             <div className="flex flex-column align-items-center text-white">
@@ -22,6 +19,7 @@ const Info: FC<InfoProps> = ({ element }) => {
                         {element.name}
                     </h2>
                 </div>
+
                 <div className="p-4">
                     <p className="text-base">
                         <span>Group block: </span>
@@ -40,10 +38,15 @@ const Info: FC<InfoProps> = ({ element }) => {
                         <span>{element.yearDiscovered}</span>
                     </p>
                 </div>
-                <img
-                    className="w-8"
-                    src={standardStates[element.standardState]}
-                />
+
+                <div>
+                    <StandardStates
+                        state={
+                            element.standardState as 'solid' | 'liquid' | 'gas'
+                        }
+                    />
+                </div>
+
                 <p className="text-base">
                     <span>Standard state: </span>
                     {element.standardState}
