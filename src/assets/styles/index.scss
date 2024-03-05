@@ -38,3 +38,9 @@ html {
 #root {
     height: 100vh;
 }
+
+.hand-cursor {
+    cursor:
+        url(/icons/cursor-hand.svg) 5 5,
+        auto;
+}

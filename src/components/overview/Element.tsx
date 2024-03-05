@@ -17,6 +17,12 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
     const boxColor = hovered ? '#CBC3FF' : '#FFF';
 
     useEffect(() => {
+        document.body.style.cursor = hovered
+            ? 'url(/icons/cursor-hand.svg) 5 5, auto'
+            : 'url(/icons/cursor-arrow.svg) 5 5, auto';
+    }, [hovered]);
+
+    useEffect(() => {
         vector.set(position.x * 2, position.y, position.z * 2);
         boxRef.current.lookAt(vector);
     }, [position, vector]);
@@ -31,6 +37,7 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
 
     return (
         <mesh
+            className={`${hovered ? 'hand-cursor' : ''}`}
             ref={boxRef}
             geometry={geometryBox}
             name={(index + 1).toString()}
