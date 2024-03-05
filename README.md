@@ -3,29 +3,56 @@
 ![image](./docs/elements.jpg)
 Elements is web application utilizing React Three Fiber to showcase the periodic table in a 3D environment.
 
-Currently, two official plugins are available:
+## Table of Content
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Introduction](#introduction)
+2. [Installation](#installation)
+3. [Features](#features)
+4. [License](#license)
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The application originated from a group project for a university course on "Information Spaces." I further developed the resulting prototype, implementing it in a declarative manner using React Three Fiber.
 
--   Configure the top-level `parserOptions` property like this:
+Authors: @lisaberger @teresahause @marvinmurmann
 
-```js
-export default {
-    // other rules...
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: ['./tsconfig.json', './tsconfig.node.json'],
-        tsconfigRootDir: __dirname,
-    },
-};
+## Installation
+
+Start the app
+
+```bash
+npm install
+npm run dev
 ```
 
--   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
--   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Features
+
+1. [Particle System](#particle-system)
+2. [3D-Helix View of Elements](#3d-helix-view-of-elements)
+3. [Different Filtering Options](#different-filtering-options)
+4. [Physics](#physics) (coming soon)
+5. [Shader Materials](#shader-materials) (coming soon)
+
+### Particle System
+
+On the starting page, a simple particle system is displayed in the background.
+
+### 3D-Helix View of Elements
+
+...
+
+### Different Filtering Options
+
+...
+
+### Physics
+
+Physics feature is coming soon.
+
+### Shader Materials
+
+Shader materials feature is coming soon.
+
+<hr />
+
+&copy; elements
