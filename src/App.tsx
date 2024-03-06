@@ -1,11 +1,11 @@
+import { Suspense } from 'react';
 import { RouterProvider } from 'react-router';
-import router from '@/router/router';
-
-import '@/assets/styles/index.scss';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
 import { fetchElements } from '@/store/slices/elementsSlice';
-import { Suspense } from 'react';
+import router from '@/router/router';
+
+import '@/assets/styles/index.scss';
 
 store.dispatch(fetchElements());
 
