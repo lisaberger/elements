@@ -37,7 +37,7 @@ const AtomCoreElement: FC = ({
 }) => {
     const rigidBody = useRef<RapierRigidBody>(null);
     const mesh = useRef<Mesh>(null);
-    const pos = useMemo(() => position || [r(10), r(10), r(10)], []);
+    const pos = useMemo(() => position || [r(10), r(10), r(10)], [position, r]);
 
     useFrame(() => {
         rigidBody.current?.applyImpulse(

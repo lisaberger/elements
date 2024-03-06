@@ -1,6 +1,5 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
-import { fetchElements } from '@/utils/fetchElements';
 import { OrbitControls } from '@react-three/drei';
 import type { Element } from '@/types/Element.interface';
 import Table from '@/components/overview/Table';
@@ -8,26 +7,21 @@ import Helix from '@/components/overview/Helix';
 import Filters from '@/components/overview/filters/Filters';
 import Header from '@/components/overview/Header';
 import Loader from '@/components/shared/Loader';
+import { useAppSelector } from '@/store/hooks';
+import {
+    selectAllElements,
+    getElementsError,
+    getElementsStatus,
+} from '@/store/slices/elementsSlice';
 
 const OverviewPage = () => {
-    const [elements, setElements] = useState<Element[]>([]);
     const [type, setType] = useState<'Helix' | 'Table'>('Helix');
     const [selectedFilters, setSelectedFilters] = useState({});
+    const [filteredElements, setFilteredElements] = useState<Element[]>([]);
 
-    const [filteredElements, setFilteredElements] = useState([]);
-
-    useEffect(() => {
-        const fetchElementsData = async () => {
-            try {
-                const loadedElements = await fetchElements();
-                setElements(loadedElements);
-            } catch (error) {
-                console.error('Error in useEffect:', error.message);
-            }
-        };
-
-        fetchElementsData();
-    }, []);
+    const elements = useAppSelector(selectAllElements);
+    const elementsStatus = useAppSelector(getElementsStatus);
+    const error = useAppSelector(getElementsError);
 
     const handleTypeChange = (eventType: 'Helix' | 'Table') => {
         setType(eventType);
@@ -67,17 +61,29 @@ const OverviewPage = () => {
         <div>
             <Header type={type} onTypeChange={handleTypeChange} />
             <Filters onFiltersChange={handleFiltersChange} />
-            <Canvas style={{ position: 'absolute', zIndex: 1 }}>
-                <Suspense fallback={<Loader />}>
-                    {type === 'Helix' && <Helix elements={filteredElements} />}
-                    {type === 'Table' && <Table elements={filteredElements} />}
-                    <OrbitControls
-                        minPolarAngle={Math.PI / 2}
-                        maxPolarAngle={Math.PI / 2}
-                    />
-                    <ambientLight color={0xcc9ff4} intensity={1} />
-                </Suspense>
-            </Canvas>
+            {elementsStatus === 'loading' && (
+                <p className="text-primary m-auto">Load Elements...</p>
+            )}
+
+            {elementsStatus === 'failed' && <p>{error}</p>}
+
+            {elementsStatus === 'succeeded' && (
+                <Canvas style={{ position: 'absolute', zIndex: 1 }}>
+                    <Suspense fallback={<Loader />}>
+                        {type === 'Helix' && (
+                            <Helix elements={filteredElements} />
+                        )}
+                        {type === 'Table' && (
+                            <Table elements={filteredElements} />
+                        )}
+                        <OrbitControls
+                            minPolarAngle={Math.PI / 2}
+                            maxPolarAngle={Math.PI / 2}
+                        />
+                        <ambientLight color={0xcc9ff4} intensity={1} />
+                    </Suspense>
+                </Canvas>
+            )}
         </div>
     );
 };

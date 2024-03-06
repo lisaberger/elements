@@ -1,26 +1,19 @@
-import {
-    Route,
-    RouterProvider,
-    createBrowserRouter,
-    createRoutesFromElements,
-} from 'react-router-dom';
-import './assets/styles/index.scss';
-import HomePage from '@/pages/HomePage';
-import OverviewPage from '@/pages/OverviewPage';
-import ElementPage from '@/pages/ElementPage';
+import { RouterProvider } from 'react-router';
+import router from '@/router/router';
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/">
-            <Route index element={<HomePage />} />
-            <Route path="/all" element={<OverviewPage />} />
-            <Route path="/element/:id" element={<ElementPage />} />
-        </Route>,
-    ),
-);
+import '@/assets/styles/index.scss';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
+import { fetchElements } from '@/store/slices/elementsSlice';
+
+store.dispatch(fetchElements());
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    );
 }
 
 export default App;

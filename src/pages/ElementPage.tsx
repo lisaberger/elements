@@ -1,37 +1,26 @@
-import { useEffect, useState } from 'react';
-import { fetchElementByAtomicNumber } from '../utils/fetchElements';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import type { Element } from '@/types/Element.interface';
 import Atom from '@/components/element/atom/Atom';
 import Logo from '@/components/shared/Logo';
 import Info from '@/components/element/Info';
 import Icon from '@/components/shared/Icon';
+import { useAppSelector } from '@/store/hooks';
+import { selectElementByAtomicNumber } from '@/store/slices/elementsSlice';
 
 const ElementPage = () => {
     const { id } = useParams();
-    const [element, setElement] = useState<null | Element>(null);
+    let atomicNumber = 1;
 
+    if (id) {
+        atomicNumber = +id;
+    }
+
+    const element = useAppSelector((state) =>
+        selectElementByAtomicNumber(state, atomicNumber),
+    );
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchElementData = async () => {
-            try {
-                const loadedElement = await fetchElementByAtomicNumber(
-                    Number(id),
-                );
-
-                setElement(loadedElement);
-            } catch (error) {
-                // Hier können Sie Fehlerbehandlungslogik hinzufügen
-                console.error('Error in useEffect:', error.message);
-            }
-        };
-
-        fetchElementData();
-    }, [id]);
 
     const returnHandler = () => {
         navigate('/all');
