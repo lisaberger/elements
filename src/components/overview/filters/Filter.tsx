@@ -7,9 +7,10 @@ import { updateFilter } from '@/store/slices/filtersSlice';
 interface FilterProps {
     id: string;
     options: IFilter[];
+    value: string;
 }
 
-const Filter: FC<FilterProps> = ({ options, id }) => {
+const Filter: FC<FilterProps> = ({ options, id, value }) => {
     const dispatch = useAppDispatch();
 
     const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -22,12 +23,11 @@ const Filter: FC<FilterProps> = ({ options, id }) => {
         <select
             name={id}
             id={id}
+            value={value}
             onChange={handleChange}
             className={`${styles.filter} text-white mt-4 px-2 py-2 border-solid border-round-lg hover:border-primary active:text-primary`}
         >
-            <option value="" selected>
-                {id}
-            </option>
+            <option value="">{id}</option>
 
             {options &&
                 options.map((option, index) => (

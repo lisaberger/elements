@@ -24,6 +24,10 @@ const Info: FC<InfoProps> = ({ element }) => {
                         <span>{element.groupBlock}</span>
                     </p>
                     <p className="text-base">
+                        <span>Bonding type: </span>
+                        <span>{element.bondingType}</span>
+                    </p>
+                    <p className="text-base">
                         <span>Boiling point: </span>
                         <span>{element.boilingPoint}</span>
                     </p>
