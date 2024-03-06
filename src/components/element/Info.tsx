@@ -1,8 +1,6 @@
-import { FC, Suspense } from 'react';
+import { FC } from 'react';
 import type { Element } from '@/types/Element.interface';
 import StandardStates from '@/components/element/StandardStates';
-import { Canvas } from '@react-three/fiber';
-import { Stage } from '@react-three/drei';
 
 interface InfoProps {
     element: Element | null;
