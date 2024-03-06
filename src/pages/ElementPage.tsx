@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import type { Element } from '@/types/Element.interface';
-import Atom from '@/components/element/Atom';
+import Atom from '@/components/element/atom/Atom';
 import Logo from '@/components/shared/Logo';
 import Info from '@/components/element/Info';
 import Icon from '@/components/shared/Icon';
@@ -60,21 +60,16 @@ const ElementPage = () => {
                             camera={{
                                 fov: 45,
                                 near: 0.1,
-                                far: 100000,
-                                position: [50, -100, 10000],
+                                far: 1000,
+                                position: [0, 0, 100],
                             }}
                         >
                             {element && <Atom element={element} />}
                             <OrbitControls />
-                            <directionalLight
-                                position={[100, 100, -100]}
-                                color={0xffffff}
-                                intensity={0.5}
-                            />
                             <hemisphereLight
-                                position={[0, 5100, 0]}
+                                position={[0, 0, 10]}
                                 color={0xffffff}
-                                intensity={1.25}
+                                intensity={2.25}
                             />
                         </Canvas>
                         <span className="p-4 absolute z-4 top-50">

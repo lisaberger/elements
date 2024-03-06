@@ -6,8 +6,8 @@ interface AtomShellProps {
 }
 
 const AtomShell: FC<AtomShellProps> = ({ electronDistribution }) => {
-    const radius = 1500;
-    const distance = 1000;
+    const radius = 15;
+    const distance = 10;
 
     return (
         <group>
@@ -18,7 +18,7 @@ const AtomShell: FC<AtomShellProps> = ({ electronDistribution }) => {
                 const shells = (
                     <mesh key={`shell_${shellIndex}`}>
                         <ringGeometry
-                            args={[shellRadius, shellRadius + 10, 80]}
+                            args={[shellRadius, shellRadius + 0.1, 80]}
                         />
                         <meshBasicMaterial color={0x816cff} side={DoubleSide} />
                     </mesh>
@@ -38,8 +38,8 @@ const AtomShell: FC<AtomShellProps> = ({ electronDistribution }) => {
                             key={`electron_${shellIndex}_${electronIndex}`}
                             position={[xPos, yPos, 0]}
                         >
-                            <sphereGeometry args={[80, 50, 16]} />
-                            <meshBasicMaterial color={0xffffff} />
+                            <sphereGeometry args={[1, 50, 16]} />
+                            <meshStandardMaterial color={0xffffff} />
                         </mesh>
                     );
                 });
