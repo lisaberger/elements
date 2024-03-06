@@ -1,9 +1,10 @@
+import { lazy } from 'react';
 import { createRoutesFromElements, Route } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 
-import ElementPage from '@/pages/ElementPage';
-import HomePage from '@/pages/HomePage';
-import OverviewPage from '@/pages/OverviewPage';
+const ElementPage = lazy(() => import('@/pages/ElementPage'));
+const HomePage = lazy(() => import('@/pages/HomePage'));
+const OverviewPage = lazy(() => import('@/pages/OverviewPage'));
 
 const router = createBrowserRouter(
     createRoutesFromElements(
