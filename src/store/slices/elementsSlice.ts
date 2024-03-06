@@ -75,6 +75,70 @@ export const selectElementByAtomicNumber = (
     );
 };
 
+export const uniqueGroupBlocks = (state: RootState) => {
+    const uniqueGroupBlocks = new Set<string>();
+    state.elements.elements.forEach((element) =>
+        uniqueGroupBlocks.add(element.groupBlock),
+    );
+    return uniqueGroupBlocks;
+};
+
+export const uniqueBondingTypes = (state: RootState) => {
+    const uniqueBondingTypes = new Set<string>();
+    state.elements.elements.forEach((element) =>
+        uniqueBondingTypes.add(element.bondingType),
+    );
+    return uniqueBondingTypes;
+};
+
+export const uniqueStandardStates = (state: RootState) => {
+    const uniqueStandardStates = new Set<string>();
+    state.elements.elements.forEach((element) =>
+        uniqueStandardStates.add(element.standardState),
+    );
+    return uniqueStandardStates;
+};
+
+export const includeElementByStandardState =
+    (state: RootState) => (element: Element) => {
+        const selectedStandardState = state.filters.standardState;
+
+        if (!selectedStandardState) {
+            return true;
+        }
+
+        return selectedStandardState === element.standardState;
+    };
+
+export const includeElementByBondingType =
+    (state: RootState) => (element: Element) => {
+        const selectedBondingType = state.filters.bondingType;
+
+        if (!selectedBondingType) {
+            return true;
+        }
+
+        return selectedBondingType === element.bondingType;
+    };
+
+export const includeElementByGrouBlock =
+    (state: RootState) => (element: Element) => {
+        const selectedGroupBlock = state.filters.groupBlock;
+
+        if (!selectedGroupBlock) {
+            return true;
+        }
+
+        return selectedGroupBlock === element.groupBlock;
+    };
+
+export const filteredElements = (state: RootState) => {
+    return state.elements.elements
+        .filter(includeElementByStandardState(state))
+        .filter(includeElementByBondingType(state))
+        .filter(includeElementByGrouBlock(state));
+};
+
 /**
  * REDUCER
  */
