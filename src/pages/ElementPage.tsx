@@ -60,21 +60,16 @@ const ElementPage = () => {
                             camera={{
                                 fov: 45,
                                 near: 0.1,
-                                far: 100000,
+                                far: 1000,
                                 position: [0, 0, 100],
                             }}
                         >
                             {element && <Atom element={element} />}
                             <OrbitControls />
-                            <directionalLight
-                                position={[100, 100, -100]}
-                                color={0xffffff}
-                                intensity={0.5}
-                            />
                             <hemisphereLight
-                                position={[0, 5100, 0]}
+                                position={[0, 0, 10]}
                                 color={0xffffff}
-                                intensity={1.25}
+                                intensity={2.25}
                             />
                         </Canvas>
                         <span className="p-4 absolute z-4 top-50">
