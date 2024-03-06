@@ -37,7 +37,6 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
 
     return (
         <mesh
-            className={`${hovered ? 'hand-cursor' : ''}`}
             ref={boxRef}
             geometry={geometryBox}
             name={(index + 1).toString()}
