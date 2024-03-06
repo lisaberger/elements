@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import type { Element } from '@/types/Element.interface';
-import Atom from '@/components/element/Atom';
+import Atom from '@/components/element/atom/Atom';
 import Logo from '@/components/shared/Logo';
 import Info from '@/components/element/Info';
 import Icon from '@/components/shared/Icon';
@@ -61,7 +61,7 @@ const ElementPage = () => {
                                 fov: 45,
                                 near: 0.1,
                                 far: 100000,
-                                position: [50, -100, 10000],
+                                position: [0, 0, 100],
                             }}
                         >
                             {element && <Atom element={element} />}
