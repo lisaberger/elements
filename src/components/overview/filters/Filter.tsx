@@ -9,7 +9,7 @@ interface FilterProps {
     options: IFilter[];
 }
 
-const Filter: FC<FilterProps> = ({ options, defaultValue, id }) => {
+const Filter: FC<FilterProps> = ({ options, id }) => {
     const dispatch = useAppDispatch();
 
     const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
