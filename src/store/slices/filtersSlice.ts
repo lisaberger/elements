@@ -25,7 +25,7 @@ const filtersSlice = createSlice({
     reducers: {
         updateFilter: (
             state,
-            action: PayloadAction<{ key: string; value: string }>,
+            action: PayloadAction<{ key: keyof Filters; value: string }>,
         ) => {
             const { key, value } = action.payload;
             state[key] = value;
