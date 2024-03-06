@@ -7,6 +7,7 @@ import {
     GLSL3,
     LinearFilter,
     Mesh,
+    RawShaderMaterial,
     RedFormat,
     Vector3,
 } from 'three';
@@ -14,6 +15,7 @@ import { ImprovedNoise } from 'three/examples/jsm/Addons.js';
 
 const GasState = () => {
     const gasSphere = useRef<Mesh>(null!);
+    const gasMaterial = useRef<RawShaderMaterial>(null!);
 
     // 3D-Texture
     const size = 128;
@@ -63,9 +65,11 @@ const GasState = () => {
     useFrame((state) => {
         const { camera } = state;
 
+        // @ts-expect-error shaderMaterial not recognized by tsc
         gasSphere.current.material.uniforms.cameraPos.value = camera.position;
         gasSphere.current.rotation.y = -performance.now() / 7500;
 
+        // @ts-expect-error shaderMaterial not recognized by tsc
         gasSphere.current.material.uniforms.frame.value++;
     });
 
@@ -73,6 +77,7 @@ const GasState = () => {
         <mesh ref={gasSphere}>
             <boxGeometry />
             <rawShaderMaterial
+                ref={gasMaterial}
                 glslVersion={GLSL3}
                 uniforms={{
                     base: { value: new Color(0xffffff) },

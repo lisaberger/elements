@@ -10,6 +10,7 @@ const LiquidState: FC<LiquidStateProps> = () => {
     useFrame((state) => {
         const { clock } = state;
 
+        // @ts-expect-error shaderMaterial not recognized by tsc
         liquidSphere.current.material.uniforms.uTime.value = clock.elapsedTime;
     });
 

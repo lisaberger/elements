@@ -6,14 +6,15 @@ import {
     uniqueGroupBlocks,
     uniqueStandardStates,
 } from '@/store/slices/elementsSlice';
+import { FiltersKey } from '@/types/Filters.interface';
 
-interface Filters {
+export interface FiltersState {
     groupBlock: string;
     standardState: string;
     bondingType: string;
 }
 
-const initialState: Filters = {
+const initialState: FiltersState = {
     groupBlock: '',
     standardState: '',
     bondingType: '',
@@ -25,7 +26,7 @@ const filtersSlice = createSlice({
     reducers: {
         updateFilter: (
             state,
-            action: PayloadAction<{ key: keyof Filters; value: string }>,
+            action: PayloadAction<{ key: FiltersKey; value: string }>,
         ) => {
             const { key, value } = action.payload;
             state[key] = value;

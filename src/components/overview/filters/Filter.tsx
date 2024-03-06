@@ -3,9 +3,10 @@ import styles from './Filter.module.scss';
 import { Filter as IFilter } from '@/types/Filter.interface';
 import { useAppDispatch } from '@/store/hooks';
 import { updateFilter } from '@/store/slices/filtersSlice';
+import { FiltersKey } from '@/types/Filters.interface';
 
 interface FilterProps {
-    id: string;
+    id: FiltersKey;
     options: IFilter[];
     value: string;
 }

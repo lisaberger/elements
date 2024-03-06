@@ -6,7 +6,7 @@ import {
     RapierRigidBody,
     RigidBody,
 } from '@react-three/rapier';
-import { Mesh, Vector3, MathUtils } from 'three';
+import { Mesh, Vector3, MathUtils, Color } from 'three';
 
 interface AtomeCoreProps {
     nucleusNumber: number;
@@ -19,7 +19,11 @@ const AtomCore: FC<AtomeCoreProps> = ({ nucleusNumber }) => {
                 {Array.from({ length: nucleusNumber }, (_, i) => (
                     <AtomCoreElement
                         key={i}
-                        color={i % 2 === 0 ? 0x816cff : 0xe1beff}
+                        color={
+                            i % 2 === 0
+                                ? new Color(0x816cff)
+                                : new Color(0xe1beff)
+                        }
                     />
                 ))}
             </Physics>
@@ -27,22 +31,31 @@ const AtomCore: FC<AtomeCoreProps> = ({ nucleusNumber }) => {
     );
 };
 
-const AtomCoreElement: FC = ({
+interface AtomCoreElementProps {
+    position?: Vector3;
+    vec?: Vector3;
+    r?: (spread: number) => number;
+    color: Color;
+}
+
+const AtomCoreElement: FC<AtomCoreElementProps> = ({
     position,
     vec = new Vector3(),
-    scale,
     r = MathUtils.randFloatSpread,
     color,
     ...props
 }) => {
     const rigidBody = useRef<RapierRigidBody>(null);
     const mesh = useRef<Mesh>(null);
-    const pos = useMemo(() => position || [r(10), r(10), r(10)], [position, r]);
+    const pos = useMemo(
+        () => position || new Vector3(r(10), r(10), r(10)),
+        [position, r],
+    );
 
     useFrame(() => {
         rigidBody.current?.applyImpulse(
             vec
-                .copy(rigidBody.current.translation())
+                .copy(rigidBody.current.translation() as Vector3)
                 .negate()
                 .multiplyScalar(0.5),
             true,
