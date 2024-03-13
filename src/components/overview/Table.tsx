@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 import Element from '@/components/overview/Element';
-import type { Element as IElement } from '../../types/Element.interface';
+import type { Element as IElement } from '@/types/Element.interface';
 
 interface TableProps {
     elements: IElement[];
@@ -15,7 +15,7 @@ const Table: FC<TableProps> = ({ elements }) => {
         TextureLoader,
         Array.from(
             { length: 118 },
-            (_, i) => `/textures/textures_elements_${i}.png`,
+            (_, i) => `./textures/textures_elements_${i}.png`,
         ),
     );
 

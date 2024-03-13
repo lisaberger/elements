@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Element } from '@/types/Element.interface';
 import { RootState } from '@/store/store';
+import data from '@/data/periodic-table.json';
 
 interface ElementState {
     elements: Element[];
@@ -17,13 +18,13 @@ const initialState: ElementState = {
 export const fetchElements = createAsyncThunk<Element[]>(
     'elements/fetchElements',
     async () => {
-        const response = await fetch('/data/periodic-table.json');
+        // const response = await fetch('./periodic-table.json');
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch elements');
-        }
+        // if (!response.ok) {
+        //     throw new Error('Failed to fetch elements');
+        // }
 
-        return response.json();
+        return data;
     },
 );
 
