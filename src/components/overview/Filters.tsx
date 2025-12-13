@@ -4,13 +4,15 @@ import {
     filterOptions,
     selectFilters,
     updateFilter,
+    resetFilters
 } from '@/store/slices/filtersSlice';
 import { FiltersKey } from '@/types/Filters.interface';
-import { Filter as IFilter } from '@/types/Filter.interface';
+import { Filter } from '@/types/Filter.interface';
 import { useTranslation } from 'react-i18next';
 
 function Filters() {
     const { t } = useTranslation('filters');
+    
     const dispatch = useAppDispatch();
     const filters = useAppSelector(filterOptions);
     const selectedFilters = useAppSelector(selectFilters);
@@ -21,23 +23,42 @@ function Filters() {
             dispatch(updateFilter({ key, value }));
         };
 
+    const handleResetFilters = () => {
+        dispatch(resetFilters());
+    }
+
     return (
         <section className="mb-4 md:mb-10 w-full flex justify-center px-4 gap-2 absolute bottom-0 z-2">
-            {(Object.entries(filters) as [FiltersKey, IFilter[]][]).map(
-                ([key, options]) => (
+            {(Object.entries(filters) as [FiltersKey, Filter[]][]).map(([key, options]) => {
+                // Reset option at the beginning
+                const optionsWithReset = [
+                    { value: '', label: t('labels.reset', 'Reset') },
+                    
+                    // real options
+                    ...options.map((option) => ({
+                        value: option.value,
+                        label: t(`${key}.${option.value}`),
+                    })),
+                ];
+
+                return (
                     <Dropdown
                         key={key}
                         id={key}
-                        options={options.map((option) => ({
-                            value: option.value,
-                            label: t(`${key}.${option.value}`),
-                        }))}
+                        options={optionsWithReset}
                         value={selectedFilters[key]}
                         placeholder={t(`labels.${key}`)}
                         onChange={handleChange(key)}
                     />
-                )
-            )}
+                );
+            })}
+            <button
+                type="button"
+                onClick={handleResetFilters}
+                className="px-4 py-2 rounded-lg bg-primary text-white"
+            >
+                {t('labels.resetAll', 'Reset All')}
+            </button>
         </section>
     );
 };
