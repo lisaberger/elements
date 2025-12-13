@@ -4,6 +4,10 @@
         "groupBlock": "Elementgruppe",
         "bondingType": "Bindungstyp"
     },
+    "buttons": {
+        "resetFilters": "Alle Filter zurücksetzen",
+        "resetFilter": "Zurücksetzen"
+    },
     "standardState": {
         "gas": "Gas",
         "solid": "Fest",

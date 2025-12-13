@@ -32,7 +32,7 @@ function Filters() {
             {(Object.entries(filters) as [FiltersKey, Filter[]][]).map(([key, options]) => {
                 // Reset option at the beginning
                 const optionsWithReset = [
-                    { value: '', label: t('labels.reset', 'Reset') },
+                    { value: '', label: t('buttons.resetFilter') },
                     
                     // real options
                     ...options.map((option) => ({
@@ -57,7 +57,7 @@ function Filters() {
                 onClick={handleResetFilters}
                 className="px-4 py-2 rounded-lg bg-primary text-white"
             >
-                {t('labels.resetAll', 'Reset All')}
+                {t('buttons.resetFilters')}
             </button>
         </section>
     );
