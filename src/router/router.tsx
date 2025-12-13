@@ -20,6 +20,9 @@ const router = createBrowserRouter(
             <Route path="/element/:id" element={<ElementPage />} />
         </Route>,
     ),
+    {
+        basename: import.meta.env.BASE_URL,
+    }
 );
 
 export default router;
