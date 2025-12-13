@@ -18,6 +18,10 @@
     @import "tailwindcss";
 }
 
+@theme {
+    --cursor-hand: url("/icons/cursor-hand.svg") 5 5, auto;
+}
+
 html {
     background: var(--background-color);
     font-family: 'M PLUS Rounded 1c', Inter, system-ui, Avenir, Helvetica, Arial,
