@@ -10,7 +10,7 @@ import { useAppSelector } from '@/store/hooks';
 import {
     getElementsError,
     getElementsStatus,
-    filteredElements as filteredEl,
+    searchedAndFilteredElements,
 } from '@/store/slices/elementsSlice';
 import { ViewType } from '@/types/View.interface';
 
@@ -19,7 +19,7 @@ const OverviewPage = () => {
     const elementsStatus = useAppSelector(getElementsStatus);
     const error = useAppSelector(getElementsError);
 
-    const filteredElements = useAppSelector(filteredEl);
+    const filteredElements = useAppSelector(searchedAndFilteredElements);
 
     return (
         <div>

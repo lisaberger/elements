@@ -32,7 +32,7 @@ const optionStyles = cva(
 );
 
 const containerStyles = cva(
-    'inline-flex border border-white rounded-lg overflow-hidden bg-transparent'
+    'inline-flex border border-white/30 rounded-lg overflow-hidden bg-transparent'
 );
 
 const SelectButton = forwardRef<HTMLDivElement, SelectButtonProps>(

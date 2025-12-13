@@ -36,7 +36,7 @@ const Dropdown = <T extends string>({
             onChange={handleChange}
             disabled={disabled}
             className={clsx(
-                'bg-transparent text-white px-3 py-2 rounded-lg border border-gray-500 hover:border-primary focus:outline-none focus:border-primary',
+                'bg-transparent text-white px-3 py-2 rounded-lg border border-white/30 hover:border-primary focus:outline-none focus:border-primary',
                 className
             )}
         >

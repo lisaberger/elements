@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Element } from '@/types/Element.interface';
 import { RootState } from '@/store/store';
+import { selectSearchQuery } from './searchSlice';
 
 interface ElementState {
     elements: Element[];
@@ -137,6 +138,27 @@ export const filteredElements = (state: RootState) => {
         .filter(includeElementByStandardState(state))
         .filter(includeElementByBondingType(state))
         .filter(includeElementByGrouBlock(state));
+};
+
+export const searchedAndFilteredElements = (state: RootState) => {
+    const query = selectSearchQuery(state).toLowerCase();
+
+    return state.elements.elements
+        .filter(includeElementByStandardState(state))
+        .filter(includeElementByBondingType(state))
+        .filter(includeElementByGrouBlock(state))
+        .filter((element) => {
+            if (!query) return true;
+
+            return (
+                element.name.toLowerCase().includes(query) ||
+                element.symbol.toLowerCase().includes(query) ||
+                element.atomicNumber.includes(query) ||
+                element.groupBlock.toLowerCase().includes(query) ||
+                element.bondingType.toLowerCase().includes(query) ||
+                element.standardState.toLowerCase().includes(query)
+            );
+        });
 };
 
 /**

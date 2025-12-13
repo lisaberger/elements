@@ -20,7 +20,7 @@ function Filters() {
         };
 
     return (
-        <section className="mb-4 w-full flex justify-center px-4 gap-2 absolute bottom-0 z-2">
+        <section className="mb-4 md:mb-10 w-full flex justify-center px-4 gap-2 absolute bottom-0 z-2">
             {(Object.entries(filters) as [FiltersKey, IFilter[]][]).map(
                 ([key, options]) => (
                     <Dropdown
