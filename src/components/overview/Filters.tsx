@@ -7,8 +7,10 @@ import {
 } from '@/store/slices/filtersSlice';
 import { FiltersKey } from '@/types/Filters.interface';
 import { Filter as IFilter } from '@/types/Filter.interface';
+import { useTranslation } from 'react-i18next';
 
 function Filters() {
+    const { t } = useTranslation('filters');
     const dispatch = useAppDispatch();
     const filters = useAppSelector(filterOptions);
     const selectedFilters = useAppSelector(selectFilters);
@@ -26,9 +28,12 @@ function Filters() {
                     <Dropdown
                         key={key}
                         id={key}
-                        options={options}
+                        options={options.map((option) => ({
+                            value: option.value,
+                            label: t(`${key}.${option.value}`),
+                        }))}
                         value={selectedFilters[key]}
-                        placeholder={key}
+                        placeholder={t(`labels.${key}`)}
                         onChange={handleChange(key)}
                     />
                 )
