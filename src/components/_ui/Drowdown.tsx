@@ -20,7 +20,7 @@ const Dropdown = <T extends string>({
     options,
     value,
     onChange,
-    placeholder,
+    placeholder = 'Select option',
     id,
     className,
     disabled = false,

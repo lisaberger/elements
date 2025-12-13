@@ -40,25 +40,6 @@ i18n
         interpolation: {
         escapeValue: false,
         },
-
-        resources: {
-            en: {
-                translation: {
-                    intro: "Get to know all the chemical elements from a new perspective with this interactive 3D application. We break the rigid structure of the periodic table to present the important properties in new ways using the 3D space.",
-                    buttons: {
-                        run: 'Go'
-                    },
-                },
-            },
-            de: {
-                translation: {
-                    intro: "Lernen Sie mit dieser interaktiven 3D-Anwendung alle chemischen Elemente aus einer neuen Perspektive kennen. Wir brechen die starre Struktur des Periodensystems auf, um die wichtigen Eigenschaften auf neue Weise im 3D-Raum darzustellen.",
-                    buttons: {
-                        run: 'Start'
-                    },
-                },
-            },
-        },
     });
 
 export default i18n;

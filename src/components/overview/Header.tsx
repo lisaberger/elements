@@ -6,6 +6,7 @@ import { HTMLAttributes } from 'react';
 import SearchBar from '../_ui/Search';
 import { setSearchQuery } from '@/store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
     onTypeChange: (type: ViewType) => void;
@@ -23,6 +24,8 @@ function Header({ onTypeChange }: HeaderProps) {
         (state) => state.search.query
     );
 
+    const { t } = useTranslation();
+
     return (
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
             <Logo 
@@ -32,6 +35,7 @@ function Header({ onTypeChange }: HeaderProps) {
 
             <SearchBar 
                 value={searchQuery}
+                placeholder={t('search')}
                 onChange={(value) => dispatch(setSearchQuery(value))}
                 className='my-2' 
             />
