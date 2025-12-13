@@ -41,9 +41,9 @@ i18n
             escapeValue: false,
         },
 
-        backend: {
-            loadPath: `${import.meta.env.BASE_URL}/locales/{{lng}}/{{ns}}.json`
-        }
+        // backend: {
+        //     loadPath: `${import.meta.env.BASE_URL}/locales/{{lng}}/{{ns}}.json`
+        // }
     });
 
 export default i18n;
