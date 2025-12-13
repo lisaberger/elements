@@ -1,0 +1,35 @@
+{
+    "labels": {
+        "standardState": "Aggregatzustand",
+        "groupBlock": "Elementgruppe",
+        "bondingType": "Bindungstyp"
+    },
+    "buttons": {
+        "resetFilters": "Alle Filter zurücksetzen",
+        "resetFilter": "Zurücksetzen"
+    },
+    "standardState": {
+        "gas": "Gas",
+        "solid": "Fest",
+        "liquid": "Flüssig"
+    },
+    "groupBlock": {
+        "nonmetal": "Nichtmetall",
+        "noble gas": "Edelgas",
+        "alkali metal": "Alkalimetall",
+        "alkaline earth metal": "Erdalkalimetall",
+        "metalloid": "Halbmetall",
+        "halogen": "Halogen",
+        "metal": "Metall",
+        "transition metal": "Übergangsmetall",
+        "lanthanoid": "Lanthanoid",
+        "actinoid": "Actinoid",
+        "post-transition metal": "Post-Übergangsmetall"
+    },
+    "bondingType": {
+        "metallic": "Metallisch",
+        "diatomic": "Diatomisch",
+        "atomic": "Atomar",
+        "covalent network": "Kovalentes Netzwerk"
+    }
+}
