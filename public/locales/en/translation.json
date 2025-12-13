@@ -3,5 +3,7 @@
     "buttons": {
         "run": "Go"
     },
-    "search": "Search elements ..."
+    "search": "Search elements ...",
+    "startAnimation": "Stop animation",
+    "stopAnimation": "Start animation"
 }

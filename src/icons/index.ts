@@ -6,6 +6,10 @@ import {
     UserIcon,
     RocketLaunchIcon,
     MagnifyingGlassIcon,
+    FunnelIcon,
+    PlayIcon,
+    StopIcon,
+    AdjustmentsHorizontalIcon,
 } from '@heroicons/react/24/outline';
 
 // SVGs
@@ -26,7 +30,11 @@ export enum IconName {
     ArrowRight = 'arrowRight',
     CursorArrow = 'cursorArrow',
     CursorHand = 'cursorHand',
-    MagnifyingGlass = 'magnifyingGlass'
+    MagnifyingGlass = 'magnifyingGlass',
+    Funnel = 'funnel',
+    AdjustmentsHorizontal = 'adjustmentsHorizontal',
+    Play = 'play',
+    Stop = 'stop'
 }
 
 export const icons: Record<string, ComponentType<any> | string> = {
@@ -35,6 +43,10 @@ export const icons: Record<string, ComponentType<any> | string> = {
     [IconName.User]: UserIcon,
     [IconName.RocketLaunch]: RocketLaunchIcon,
     [IconName.MagnifyingGlass]: MagnifyingGlassIcon,
+    [IconName.Funnel]: FunnelIcon,
+    [IconName.Play]: PlayIcon,
+    [IconName.Stop]: StopIcon,
+    [IconName.AdjustmentsHorizontal]: AdjustmentsHorizontalIcon,
 
     // Custom SVG
     [IconName.CursorArrow]: CursorPointerSvg,

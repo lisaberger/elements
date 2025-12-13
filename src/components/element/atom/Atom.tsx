@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import type { Element } from '@/types/Element.interface';
 import { determineAtomConfiguration } from '@/utils/determineAtomConfiguration';
 import AtomShell from '@/components/element/atom/AtomShell';
@@ -6,9 +6,10 @@ import AtomCore from '@/components/element/atom/AtomCore';
 
 interface AtomProps {
     element: Element;
+    state?: { paused: boolean };
 }
 
-const Atom: FC<AtomProps> = ({ element }) => {
+const Atom: FC<AtomProps> = ({ element, state }) => {
     const atomConfiguration = determineAtomConfiguration(element);
 
     const atomicNumber = +element.atomicNumber;
@@ -27,7 +28,7 @@ const Atom: FC<AtomProps> = ({ element }) => {
     return (
         <>
             <AtomCore nucleusNumber={nucleusNumber} />
-            <AtomShell electronDistribution={atomConfiguration} />
+            <AtomShell electronDistribution={atomConfiguration} paused={state?.paused} />
         </>
     );
 };
