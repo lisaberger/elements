@@ -7,6 +7,7 @@ import SearchBar from '../_ui/Search';
 import { setSearchQuery } from '@/store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useTranslation } from 'react-i18next';
+import logo from '/logo/elements-rgb-wort-bild.svg';
 
 interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
     onTypeChange: (type: ViewType) => void;
@@ -29,7 +30,7 @@ function Header({ onTypeChange }: HeaderProps) {
     return (
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
             <Logo 
-                src="./logo/elements-rgb-wort-bild.svg" 
+                src={logo} 
                 onClick={() => navigate('/')} 
             />
 

@@ -4,6 +4,7 @@ import Button from '@/components/_ui/Button';
 import { useTranslation } from "react-i18next";
 import Icon from '../_ui/Icon';
 import { IconName } from '@/icons';
+import logo from '/logo/elements-rgb-wort-bild.svg';
 
 function Intro() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Intro() {
 
     return (
         <div className="flex flex-col items-center justify-center h-full text-white text-center relative">
-            <Logo src="./logo/elements-rgb-wort-bild.svg" />
+            <Logo src={logo} />
 
             <p className="max-w-md mt-4 mb-8 px-8">
                 {t('intro')}
