@@ -18,7 +18,7 @@ const initialState: ElementState = {
 export const fetchElements = createAsyncThunk<Element[]>(
     'elements/fetchElements',
     async () => {
-        const response = await fetch(`${process.env.PUBLIC_URL}/data/periodic-table.json`);
+        const response = await fetch(`${import.meta.env.BASE_URL}/data/periodic-table.json`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch elements');
