@@ -1,36 +1,29 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SwitchButton from '@/components/overview/SwitchButton';
 import Logo from '@/components/shared/Logo';
+import SelectButton from '@/components/ui/SelectButton';
 
 interface HeaderProps {
     onTypeChange: (type: 'Helix' | 'Table') => void;
     type: 'Helix' | 'Table';
 }
 
-const Header: FC<HeaderProps> = ({ onTypeChange, type }) => {
+const Header: FC<HeaderProps> = ({ onTypeChange }) => {
     const navigate = useNavigate();
 
     const onClickHandler = () => {
         navigate('/');
     };
 
-    const typeChange = () => {
-        if (type === 'Helix') {
-            onTypeChange('Table');
-
-            return;
-        }
-
-        onTypeChange('Helix');
-    };
-
     return (
         <header className="p-4 flex justify-between w-full absolute z-5">
             <Logo size="medium" onClick={onClickHandler} />
             <div className="flex items-center">
-                <p className="text-white text-sm mr-2">{type}</p>
-                <SwitchButton onToggle={typeChange} />
+                <SelectButton
+                    initialValue='Helix'
+                    options={['Helix', 'Table']} 
+                    onChange={ (type) => onTypeChange(type as 'Helix' | 'Table')} 
+                />
             </div>
         </header>
     );
