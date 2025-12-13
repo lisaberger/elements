@@ -48,7 +48,7 @@ const ElementPage = () => {
             <main className="h-full flex flex-col md:flex-row z-2">
                 <section className="flex-3 relative">
                     <div className="p-4 md:px-8 absolute z-4 flex w-full items-center justify-between">
-                        <Logo src="/logo/elements-rgb-wort-bild.svg" onClick={returnHandler} />
+                        <Logo src="./logo/elements-rgb-wort-bild.svg" onClick={returnHandler} />
                         
                         <button onClick={returnHandler}>
                             <Icon name="x" />

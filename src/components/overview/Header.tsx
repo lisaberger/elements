@@ -29,7 +29,7 @@ function Header({ onTypeChange }: HeaderProps) {
     return (
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
             <Logo 
-                src="/logo/elements-rgb-wort-bild.svg" 
+                src="./logo/elements-rgb-wort-bild.svg" 
                 onClick={() => navigate('/')} 
             />
 
