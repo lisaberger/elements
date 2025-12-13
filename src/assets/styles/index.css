@@ -1,22 +1,7 @@
-@layer reset, theme, utils;
+@import './_fonts.css';
+@import './_color.css';
 
-@layer reset {
-    @import './_reset.css';
-}
-
-@layer theme {
-    @layer font {
-        @import './_fonts.css';
-    }
-
-    @layer color {
-        @import './_color.css';
-    }
-}
-
-@layer utils {
-    @import "tailwindcss";
-}
+@import "tailwindcss";
 
 @theme {
     --cursor-hand: url("@/icons/cursor-hand.svg") 5 5, auto;

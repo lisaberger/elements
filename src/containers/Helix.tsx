@@ -1,5 +1,5 @@
 import { useThree, useLoader } from '@react-three/fiber';
-import { FC, useMemo } from 'react';
+import { FC, JSX, useMemo } from 'react';
 import { TextureLoader, Vector3 } from 'three';
 import Element from '@/components/overview/Element';
 import type { Element as IElement } from '../types/Element.interface';

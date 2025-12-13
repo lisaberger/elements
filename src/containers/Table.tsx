@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, JSX, useMemo } from 'react';
 import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 import Element from '@/components/overview/Element';

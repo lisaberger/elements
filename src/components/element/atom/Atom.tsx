@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import type { Element } from '@/types/Element.interface';
 import { determineAtomConfiguration } from '@/utils/determineAtomConfiguration';
 import AtomShell from '@/components/element/atom/AtomShell';
