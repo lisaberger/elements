@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 // Heroicons
-import { HomeIcon, UserIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, UserIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
 
 // SVGs
 import CursorPointerSvg from './cursor-arrow.svg';
@@ -15,6 +15,7 @@ import xPng from './x.png';
 export enum IconName {
     Home = 'home',
     User = 'user',
+    RocketLaunch = 'rocketLaunch',
     X = 'x',
     ArrowLeft = 'arrowLeft',
     ArrowRight = 'arrowRight',
@@ -26,6 +27,7 @@ export const icons: Record<string, ComponentType<any> | string> = {
     // Heroicons
     [IconName.Home]: HomeIcon,
     [IconName.User]: UserIcon,
+    [IconName.RocketLaunch]: RocketLaunchIcon,
 
     // Custom SVG
     [IconName.CursorArrow]: CursorPointerSvg,

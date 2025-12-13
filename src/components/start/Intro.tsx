@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/ui/Logo';
 import Button from '@/components/ui/Button';
 import { useTranslation } from "react-i18next";
+import Icon from '../ui/Icon';
+import { IconName } from '@/icons';
 
 function Intro() {
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ function Intro() {
 
             <Button onClick={handleAppStart}>
                 {t('buttons.run')}
+                <Icon name={IconName.RocketLaunch} className='ml-2 inline-block'/>
             </Button>
         </div>
     );
