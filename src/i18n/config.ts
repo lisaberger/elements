@@ -38,8 +38,12 @@ i18n
         // React does this escaping itself, so we turn 
         // it off in i18next.
         interpolation: {
-        escapeValue: false,
+            escapeValue: false,
         },
+
+        backend: {
+            loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`
+        }
     });
 
 export default i18n;
