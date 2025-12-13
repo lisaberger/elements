@@ -1,25 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/shared/Logo';
-import styles from './Start.module.css';
 import Button from './Button';
+import { useTranslation } from "react-i18next";
 
-const Start = () => {
+function Start() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleAppStart = () => {
         navigate('/all');
     };
 
     return (
-        <div className={`${styles.start} flex flex-col items-center`}>
+        <div className="flex flex-col items-center justify-center h-full text-white text-center relative">
             <Logo size="medium" />
-            <p className={`${styles.start__text} text-sm my-2`}>
-                Get to know all the chemical elements from a new perspective
-                with this interactive 3D application. We break the rigid
-                structure of the periodic table to present the important
-                properties in new ways using the 3D space.
+
+            <p className="max-w-md my-2">
+              {t('intro')}
             </p>
-            <Button label="Start" onClick={handleAppStart} />
+
+            <Button 
+                label={t('buttons.run')}
+                onClick={handleAppStart} 
+            />
         </div>
     );
 };
