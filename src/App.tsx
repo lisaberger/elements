@@ -5,9 +5,9 @@ import { store } from '@/store/store';
 import { fetchElements } from '@/store/slices/elementsSlice';
 import router from '@/router/router';
 
-store.dispatch(fetchElements());
-
 function App() {
+    store.dispatch(fetchElements());
+
     return (
         <Provider store={store}>
             <Suspense>

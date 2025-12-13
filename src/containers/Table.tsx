@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 import Element from '@/components/overview/Element';
-import type { Element as IElement } from '../../types/Element.interface';
+import type { Element as IElement } from '../types/Element.interface';
 
 interface TableProps {
     elements: IElement[];

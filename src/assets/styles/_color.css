@@ -1,4 +1,5 @@
 @theme {
+    /* PRIMARY */
     --color-brand-50:  #f2efff;
     --color-brand-100: #ded8ff;
     --color-brand-200: #c2b7ff;
@@ -9,6 +10,9 @@
     --color-brand-700: #5d4ec2;
     --color-brand-800: #4b3fa3;
     --color-brand-900: #3a3085;
+
+    /* Neutral */
+    --color-neutral-500: #1e1e1e;
 
     /* Primary alias */
     --color-primary: var(--color-brand-500);

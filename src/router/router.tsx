@@ -6,6 +6,12 @@ const ElementPage = lazy(() => import('@/pages/ElementPage'));
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const OverviewPage = lazy(() => import('@/pages/OverviewPage'));
 
+export enum AppRoutes {
+    Home = '/',
+    Overview = '/all',
+    Element = '/element/:id',
+}
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/">

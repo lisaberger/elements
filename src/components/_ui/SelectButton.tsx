@@ -11,7 +11,7 @@ export interface SelectButtonProps {
 }
 
 const optionStyles = cva(
-    'px-4 py-2 cursor-hand select-none transition-colors text-center rounded-md',
+    'px-4 cursor-hand select-none transition-colors text-center rounded-md',
     {
         variants: {
             size: {

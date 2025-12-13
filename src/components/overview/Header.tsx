@@ -1,30 +1,32 @@
-import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '@/components/ui/Logo';
-import SelectButton from '@/components/ui/SelectButton';
+import Logo from '@/components/_ui/Logo';
+import SelectButton from '@/components/_ui/SelectButton';
+import { ViewType } from '@/types/View.interface';
+import { HTMLAttributes } from 'react';
 
-interface HeaderProps {
-    onTypeChange: (type: 'Helix' | 'Table') => void;
-    type: 'Helix' | 'Table';
+interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+    onTypeChange: (type: ViewType) => void;
+    type: ViewType;
 }
 
-const Header: FC<HeaderProps> = ({ onTypeChange }) => {
+const VIEW_OPTIONS: ViewType[] = [ViewType.Helix, ViewType.Table];
+
+function Header({ onTypeChange }: HeaderProps) {
     const navigate = useNavigate();
 
-    const onClickHandler = () => {
-        navigate('/');
-    };
-
     return (
-        <header className="p-4 flex justify-between w-full absolute z-5">
-            <Logo src="/logo/elements-rgb-wort-bild.svg" onClick={onClickHandler} />
-            <div className="flex items-center">
-                <SelectButton
-                    initialValue='Helix'
-                    options={['Helix', 'Table']} 
-                    onChange={ (type) => onTypeChange(type as 'Helix' | 'Table')} 
-                />
-            </div>
+        <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
+            <Logo 
+                src="/logo/elements-rgb-wort-bild.svg" 
+                onClick={() => navigate('/')} 
+            />
+            
+            <SelectButton
+                initialValue='Helix'
+                options={VIEW_OPTIONS} 
+                onChange={ (type: string) => onTypeChange(type as ViewType)}
+                className='my-2'
+            />
         </header>
     );
 };

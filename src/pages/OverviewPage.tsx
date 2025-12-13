@@ -1,32 +1,29 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
-import Table from '@/components/overview/Table';
-import Helix from '@/components/overview/Helix';
-import Filters from '@/components/overview/filters/Filters';
+import Table from '@/containers/Table';
+import Helix from '@/containers/Helix';
+import Filters from '@/components/overview/Filters';
 import Header from '@/components/overview/Header';
-import Loader from '@/components/ui/Loader';
+import Loader from '@/components/_ui/Loader';
 import { useAppSelector } from '@/store/hooks';
 import {
     getElementsError,
     getElementsStatus,
     filteredElements as filteredEl,
 } from '@/store/slices/elementsSlice';
+import { ViewType } from '@/types/View.interface';
 
 const OverviewPage = () => {
-    const [type, setType] = useState<'Helix' | 'Table'>('Helix');
+    const [type, setType] = useState<ViewType>(ViewType.Helix);
     const elementsStatus = useAppSelector(getElementsStatus);
     const error = useAppSelector(getElementsError);
 
     const filteredElements = useAppSelector(filteredEl);
 
-    const handleTypeChange = (eventType: 'Helix' | 'Table') => {
-        setType(eventType);
-    };
-
     return (
         <div>
-            <Header type={type} onTypeChange={handleTypeChange} />
+            <Header type={type} onTypeChange={(eventType) => setType(eventType)} />
             <Filters />
             {elementsStatus === 'loading' && (
                 <p className="text-primary m-auto">Load Elements...</p>

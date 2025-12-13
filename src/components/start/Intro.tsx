@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import Logo from '@/components/ui/Logo';
-import Button from '@/components/ui/Button';
+import Logo from '@/components/_ui/Logo';
+import Button from '@/components/_ui/Button';
 import { useTranslation } from "react-i18next";
-import Icon from '../ui/Icon';
+import Icon from '../_ui/Icon';
 import { IconName } from '@/icons';
 
 function Intro() {

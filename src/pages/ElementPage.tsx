@@ -3,9 +3,9 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import Atom from '@/components/element/atom/Atom';
-import Logo from '@/components/ui/Logo';
+import Logo from '@/components/_ui/Logo';
 import Info from '@/components/element/Info';
-import Icon from '@/components/ui/Icon';
+import Icon from '@/components/_ui/Icon';
 import { useAppSelector } from '@/store/hooks';
 import { selectElementByAtomicNumber } from '@/store/slices/elementsSlice';
 import { IconName } from '@/icons';
