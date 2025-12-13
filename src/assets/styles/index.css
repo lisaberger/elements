@@ -19,7 +19,7 @@
 }
 
 @theme {
-    --cursor-hand: url("/icons/cursor-hand.svg") 5 5, auto;
+    --cursor-hand: url("@/icons/cursor-hand.svg") 5 5, auto;
 }
 
 html {
@@ -27,7 +27,7 @@ html {
     font-family: 'M PLUS Rounded 1c', Inter, system-ui, Avenir, Helvetica, Arial,
         sans-serif;
     cursor:
-        url(cursor-arrow.svg) 5 5,
+        url("@/icons/cursor-arrow.svg") 5 5,
         auto;
     line-height: 1.5;
     font-synthesis: none;
@@ -45,6 +45,6 @@ html {
 
 .hand-cursor {
     cursor:
-        url(/icons/cursor-hand.svg) 5 5,
+        url("@/icons/cursor-hand.svg") 5 5,
         auto;
 }

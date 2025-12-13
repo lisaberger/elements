@@ -18,8 +18,8 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
 
     useEffect(() => {
         document.body.style.cursor = hovered
-            ? 'url(/icons/cursor-hand.svg) 5 5, auto'
-            : 'url(/icons/cursor-arrow.svg) 5 5, auto';
+            ? 'url(@/icons/cursor-hand.svg) 5 5, auto'
+            : 'url(@/icons/cursor-arrow.svg) 5 5, auto';
     }, [hovered]);
 
     useEffect(() => {

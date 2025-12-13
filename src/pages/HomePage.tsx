@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import Particles from '@/components/start/Particles';
-import Start from '@/components/start/Start';
+import Intro from '@/components/start/Intro';
 import LanguageSwitcher from '@/i18n/LanguageSwitcher';
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
             <Canvas style={{ position: 'absolute' }}>
                 <Particles count={1000} />
             </Canvas>
-            <Start />
+            <Intro />
             <LanguageSwitcher />
         </>
     );
