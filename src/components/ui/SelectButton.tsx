@@ -2,14 +2,13 @@ import {forwardRef, useState } from 'react';
 import { cva } from 'class-variance-authority';
 import clsx from 'clsx';
 
-interface SelectButtonProps {
+export interface SelectButtonProps {
     options: string[];
     initialValue: string;
     size?: 'sm' | 'md' | 'lg';
     className?: string;
     onChange?: (value: string) => void;
 }
-
 
 const optionStyles = cva(
     'px-4 py-2 cursor-pointer select-none transition-colors text-center rounded-md',

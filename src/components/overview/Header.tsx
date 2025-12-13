@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '@/components/shared/Logo';
+import Logo from '@/components/ui/Logo';
 import SelectButton from '@/components/ui/SelectButton';
 
 interface HeaderProps {
@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({ onTypeChange }) => {
 
     return (
         <header className="p-4 flex justify-between w-full absolute z-5">
-            <Logo size="medium" onClick={onClickHandler} />
+            <Logo src="/logo/elements-rgb-wort-bild.svg" onClick={onClickHandler} />
             <div className="flex items-center">
                 <SelectButton
                     initialValue='Helix'

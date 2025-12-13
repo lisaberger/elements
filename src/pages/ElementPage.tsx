@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import Atom from '@/components/element/atom/Atom';
-import Logo from '@/components/shared/Logo';
+import Logo from '@/components/ui/Logo';
 import Info from '@/components/element/Info';
 import Icon from '@/components/shared/Icon';
 import { useAppSelector } from '@/store/hooks';
@@ -39,7 +39,7 @@ const ElementPage = () => {
             <main className="h-full flex z-2">
                 <section className="flex-3 relative">
                     <div className="p-4 absolute z-4 flex w-full items-center justify-between">
-                        <Logo size="medium" onClick={returnHandler} />
+                        <Logo src="/logo/elements-rgb-wort-bild.svg" onClick={returnHandler} />
                         <Icon icon="x" onClick={returnHandler} />
                     </div>
 

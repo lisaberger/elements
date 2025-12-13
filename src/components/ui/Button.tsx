@@ -2,6 +2,10 @@ import { forwardRef, ButtonHTMLAttributes } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import clsx from 'clsx';
 
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+    isLoading?: boolean;
+}
+
 const buttonVariants = cva(
     // Base styles
     'bg-transparent border border-white rounded-lg text-white ' +
@@ -29,10 +33,6 @@ const buttonVariants = cva(
         },
     }
 );
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
-    isLoading?: boolean;
-}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
