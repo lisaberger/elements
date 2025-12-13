@@ -1,5 +1,5 @@
 import { FC, MouseEvent } from 'react';
-import styles from './Button.module.scss';
+import styles from './Button.module.css';
 
 interface ButtonProps {
     label: string;
@@ -8,7 +8,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({ label, onClick }) => {
     return (
         <button
-            className={`${styles.button} text-white px-6 py-3 mt-4 border-solid border-round-lg hover:border-primary active:text-primary`}
+            className={`${styles.button} text-white px-6 py-3 mt-4 border rounded-lg hover:border-primary active:text-primary`}
             onClick={onClick}
         >
             {label}

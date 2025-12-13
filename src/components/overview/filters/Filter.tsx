@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import styles from './Filter.module.scss';
+import styles from './Filter.module.css';
 import { Filter as IFilter } from '@/types/Filter.interface';
 import { useAppDispatch } from '@/store/hooks';
 import { updateFilter } from '@/store/slices/filtersSlice';
@@ -26,7 +26,7 @@ const Filter: FC<FilterProps> = ({ options, id, value }) => {
             id={id}
             value={value}
             onChange={handleChange}
-            className={`${styles.filter} text-white mt-4 px-2 py-2 border-solid border-round-lg hover:border-primary active:text-primary`}
+            className={`${styles.filter} text-white mt-4 px-2 py-2 rounded-lg border hover:border-primary active:text-primary`}
         >
             <option value="">{id}</option>
 

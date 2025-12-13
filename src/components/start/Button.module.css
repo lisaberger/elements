@@ -2,11 +2,11 @@ button {
     background: transparent;
     transition: all ease-in-out 0.5s;
     border: white solid 1px;
+}
 
-    &:hover {
-        transition: all ease-in-out 0.5s;
+button:hover {
+    transition: all ease-in-out 0.5s;
         cursor:
             url(/icons/cursor-hand.svg) 5 5,
             auto;
-    }
 }

@@ -1,0 +1,17 @@
+@theme {
+    --color-brand-50:  #f2efff;
+    --color-brand-100: #ded8ff;
+    --color-brand-200: #c2b7ff;
+    --color-brand-300: #a594ff;
+    --color-brand-400: #8e79ff;
+    --color-brand-500: #816cff; /* BASE */
+    --color-brand-600: #6f5de0;
+    --color-brand-700: #5d4ec2;
+    --color-brand-800: #4b3fa3;
+    --color-brand-900: #3a3085;
+
+    /* Primary alias */
+    --color-primary: var(--color-brand-500);
+
+    --background-color: #1e1e1e;
+}

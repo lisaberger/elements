@@ -9,8 +9,8 @@ interface InfoProps {
 const Info: FC<InfoProps> = ({ element }) => {
     return (
         element && (
-            <div className="flex flex-column align-items-center text-white">
-                <div className="flex flex-column align-items-center">
+            <div className="flex flex-col items-center text-white">
+                <div className="flex flex-col items-center">
                     <p className="text-">{element.atomicNumber}</p>
                     <h1 className="text-8xl line-height-1">{element.symbol}</h1>
                     <h2 className="text-2xl mb-4 font-medium">

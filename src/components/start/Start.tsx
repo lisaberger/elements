@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/shared/Logo';
-import styles from './Start.module.scss';
+import styles from './Start.module.css';
 import Button from './Button';
 
 const Start = () => {
@@ -11,7 +11,7 @@ const Start = () => {
     };
 
     return (
-        <div className={`${styles.start} flex flex-column align-items-center`}>
+        <div className={`${styles.start} flex flex-col items-center`}>
             <Logo size="medium" />
             <p className={`${styles.start__text} text-sm my-2`}>
                 Get to know all the chemical elements from a new perspective

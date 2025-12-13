@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './Logo.module.scss';
+import styles from './Logo.module.css';
 import logo from '/logo/elements-rgb-wort-bild.svg';
 
 interface LogoProps {

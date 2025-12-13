@@ -17,13 +17,14 @@
         "@react-three/fiber": "^9.4.2",
         "@react-three/rapier": "^2.2.0",
         "@reduxjs/toolkit": "^2.11.1",
+        "@tailwindcss/vite": "^4.1.18",
         "primeflex": "^4.0.0",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-redux": "^9.2.0",
         "react-router-dom": "^7.10.1",
         "redux": "^5.0.1",
-        "sass": "^1.96.0",
+        "tailwindcss": "^4.1.18",
         "three": "^0.182.0"
     },
     "devDependencies": {

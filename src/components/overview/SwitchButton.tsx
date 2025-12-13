@@ -1,4 +1,4 @@
-import styles from './SwitchButton.module.scss';
+import styles from './SwitchButton.module.css';
 import { useState, FC } from 'react';
 
 interface SwitchButtonProps {

@@ -5,7 +5,7 @@ import { store } from '@/store/store';
 import { fetchElements } from '@/store/slices/elementsSlice';
 import router from '@/router/router';
 
-import '@/assets/styles/index.scss';
+import '@/assets/styles/index.css';
 
 store.dispatch(fetchElements());
 

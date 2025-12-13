@@ -1,21 +1,21 @@
 @layer reset, theme, utils;
 
 @layer reset {
-    @import './reset';
+    @import './_reset.css';
 }
 
 @layer theme {
     @layer font {
-        @import './fonts';
+        @import './_fonts.css';
     }
 
     @layer color {
-        @import './color';
+        @import './_color.css';
     }
 }
 
 @layer utils {
-    @import 'primeflex/primeflex.scss';
+    @import "tailwindcss";
 }
 
 html {

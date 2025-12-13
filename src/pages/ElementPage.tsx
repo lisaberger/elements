@@ -37,8 +37,8 @@ const ElementPage = () => {
     return (
         <>
             <main className="h-full flex z-2">
-                <section className="w-9 relative">
-                    <div className="p-4 absolute z-4 flex w-full align-items-center justify-content-between">
+                <section className="flex-3 relative">
+                    <div className="p-4 absolute z-4 flex w-full items-center justify-between">
                         <Logo size="medium" onClick={returnHandler} />
                         <Icon icon="x" onClick={returnHandler} />
                     </div>
@@ -61,13 +61,13 @@ const ElementPage = () => {
                                 intensity={2.25}
                             />
                         </Canvas>
-                        <span className="p-4 absolute z-4 top-50">
+                        <span className="p-4 absolute z-4 top-1/2">
                             <Icon
                                 icon="arrow-left"
                                 onClick={() => onArrowClickHandler('left')}
                             />
                         </span>
-                        <span className="right-0 top-50 p-4 absolute">
+                        <span className="right-0 top-1/2 p-4 absolute">
                             <Icon
                                 icon="arrow-right"
                                 onClick={() => onArrowClickHandler('right')}
@@ -76,7 +76,7 @@ const ElementPage = () => {
                     </div>
                 </section>
 
-                <section className="w-3 bg-primary flex flex-column align-items-center justify-content-center">
+                <section className="flex-1 bg-primary flex flex-col items-center justify-center">
                     <Info element={element} />
                 </section>
             </main>

@@ -26,9 +26,9 @@ const Header: FC<HeaderProps> = ({ onTypeChange, type }) => {
     };
 
     return (
-        <header className="p-4 flex justify-content-between w-full absolute z-5">
+        <header className="p-4 flex justify-between w-full absolute z-5">
             <Logo size="medium" onClick={onClickHandler} />
-            <div className="flex align-items-center">
+            <div className="flex items-center">
                 <p className="text-white text-sm mr-2">{type}</p>
                 <SwitchButton onToggle={typeChange} />
             </div>

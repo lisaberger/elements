@@ -35,6 +35,8 @@ const Particles: FC<ParticlesProps> = ({ count }) => {
     const texture = useLoader(TextureLoader, 'particle.png');
 
     useFrame((state) => {
+        if (!points.current) return;
+
         const { clock } = state;
 
         for (let i = 0; i < count; i++) {

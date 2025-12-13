@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './Icon.module.scss';
+import styles from './Icon.module.css';
 
 interface IconProps {
     icon: 'arrow-left' | 'arrow-right' | 'x';

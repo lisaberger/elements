@@ -17,7 +17,7 @@ const Filters: FC<FiltersProps> = () => {
                 zIndex: 2,
                 bottom: 0,
             }}
-            className="mb-4 w-full flex justify-content-center px-4 gap-2"
+            className="mb-4 w-full flex justify-center px-4 gap-2"
         >
             {Object.entries(filters).map((filter) => (
                 <Filter
