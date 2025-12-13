@@ -15,7 +15,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
         TextureLoader,
         Array.from(
             { length: 118 },
-            (_, i) => `/textures/textures_elements_${i}.png`,
+            (_, i) => `${import.meta.env.BASE_URL}textures/textures_elements_${i}.png`,
         ),
     );
 
