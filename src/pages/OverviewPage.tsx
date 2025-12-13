@@ -5,7 +5,7 @@ import Table from '@/components/overview/Table';
 import Helix from '@/components/overview/Helix';
 import Filters from '@/components/overview/filters/Filters';
 import Header from '@/components/overview/Header';
-import Loader from '@/components/shared/Loader';
+import Loader from '@/components/ui/Loader';
 import { useAppSelector } from '@/store/hooks';
 import {
     getElementsError,

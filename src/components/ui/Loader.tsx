@@ -1,8 +1,8 @@
 import { Html, useProgress } from '@react-three/drei';
-import { FC } from 'react';
 
-const Loader: FC = () => {
+function Loader() {
     const { progress } = useProgress();
+    
     return (
         <Html center className="text-primary text-xl">
             {Math.floor(progress)}%
