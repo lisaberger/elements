@@ -3,6 +3,7 @@
     "author": "Lisa Berger",
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://lisaberger.github.io/elements",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
