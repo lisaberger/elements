@@ -1,7 +1,7 @@
 {
     "name": "elements",
     "author": "Lisa Berger",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
     "homepage": "https://lisaberger.github.io/elements",
     "scripts": {
