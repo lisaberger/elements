@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Search Functionality:** A new search feature was implemented.
 - **Animations:** Added animation to the element visualization.
 - **Dependencies:** Integrated [Tailwind CSS](tailwindcss.com) for utility-first styling.
+- Implemented multi-language support (i18n).
+    - Integrated the [next-i18n](github.com) library.
+    - Added base translation files for German and English.
+    - Introduced a user-facing language switcher on the homepage for easy toggling.
 
 ### Changed
 
@@ -22,9 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - **Sass:** Removed Sass entirely from the project dependencies and source code.
-  Verwende Code mit Vorsicht.
-
-KI-Antworten können Fehler enthalten. Weitere Informationen
 
 ## [1.0.0] - 2014-02-01
 
