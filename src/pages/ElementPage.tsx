@@ -1,17 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { useState } from 'react';
 
-import Atom from '@/components/element/atom/Atom';
-import Logo from '@/components/_ui/Logo';
-import Info from '@/components/element/Info';
+import { OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import Icon from '@/components/_ui/Icon';
+import Logo from '@/components/_ui/Logo';
+import Atom from '@/components/element/atom/Atom';
+import ElectronConfigModal from '@/components/element/ElementModal';
+import Info from '@/components/element/Info';
+import { IconName } from '@/icons';
 import { useAppSelector } from '@/store/hooks';
 import { selectElementByAtomicNumber } from '@/store/slices/elementsSlice';
-import { IconName } from '@/icons';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import ElectronConfigModal from '@/components/element/ElementModal';
 
 import logo from '/logo/elements-rgb-wort-bild.svg';
 
@@ -28,9 +29,7 @@ const ElementPage = () => {
         atomicNumber = +id;
     }
 
-    const element = useAppSelector((state) =>
-        selectElementByAtomicNumber(state, atomicNumber),
-    );
+    const element = useAppSelector((state) => selectElementByAtomicNumber(state, atomicNumber));
     const navigate = useNavigate();
 
     const returnHandler = () => {
@@ -51,7 +50,7 @@ const ElementPage = () => {
                 <section className="flex-3 relative">
                     <div className="p-4 md:px-8 absolute z-4 flex w-full items-center justify-between">
                         <Logo src={logo} onClick={returnHandler} />
-                        
+
                         <button onClick={returnHandler}>
                             <Icon name="x" />
                         </button>
@@ -69,37 +68,23 @@ const ElementPage = () => {
                         >
                             {element && <Atom element={element} state={{ paused }} />}
                             <OrbitControls />
-                            <hemisphereLight
-                                position={[0, 0, 10]}
-                                color={0xffffff}
-                                intensity={2.25}
-                            />
+                            <hemisphereLight position={[0, 0, 10]} color={0xffffff} intensity={2.25} />
                         </Canvas>
                         <button className="p-4 md:px-8  absolute z-4 top-1/2 cursor-hand" onClick={() => onArrowClickHandler('left')}>
-                            <Icon
-                                name={IconName.ArrowLeft}
-                            />
+                            <Icon name={IconName.ArrowLeft} />
                         </button>
                         <button className="right-0 top-1/2 p-4 md:px-8 absolute cursor-hand" onClick={() => onArrowClickHandler('right')}>
-                            <Icon
-                                name={IconName.ArrowRight}
-                            />
+                            <Icon name={IconName.ArrowRight} />
                         </button>
                     </div>
-                    <button
-                        className="absolute top-8 left-1/2 transform -translate-x-1/2 p-2 bg-primary text-white rounded-lg z-5"
-                        onClick={() => setPaused((prev) => !prev)}
-                    >
-                        <Icon name={ paused ? IconName.Play : IconName.Stop } className='inline-block' />
-                        { paused ? t('startAnimation') : t('stopAnimation')}
+                    <button className="absolute top-8 left-1/2 transform -translate-x-1/2 p-2 bg-primary text-white rounded-lg z-5" onClick={() => setPaused((prev) => !prev)}>
+                        <Icon name={paused ? IconName.Play : IconName.Stop} className="inline-block" />
+                        {paused ? t('startAnimation') : t('stopAnimation')}
                     </button>
 
-                     {/* Open Modal Button */}
-                    <button
-                        className="absolute left-8 bottom-8 p-2 text-white rounded z-5 hover:cursor-hand"
-                        onClick={() => setShowModal(true)}
-                    >
-                    Show Configuration
+                    {/* Open Modal Button */}
+                    <button className="absolute left-8 bottom-8 p-2 text-white rounded z-5 hover:cursor-hand" onClick={() => setShowModal(true)}>
+                        Show Configuration
                     </button>
                 </section>
 
@@ -107,7 +92,7 @@ const ElementPage = () => {
                     <Info element={element} />
                 </section>
             </main>
-            {showModal && element && <ElectronConfigModal element={element} onClose={() => setShowModal(false)}/>}
+            {showModal && element && <ElectronConfigModal element={element} onClose={() => setShowModal(false)} />}
         </>
     );
 };

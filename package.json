@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint": "eslint .",
         "preview": "vite preview",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
@@ -36,6 +36,7 @@
         "three": "^0.182.0"
     },
     "devDependencies": {
+        "@eslint/js": "^9.39.1",
         "@types/node": "^25.0.1",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",
@@ -48,7 +49,9 @@
         "eslint-plugin-react-refresh": "^0.4.24",
         "gh-pages": "^6.3.0",
         "prettier": "3.7.4",
-        "typescript": "^5.9.3",
+        "globals": "^16.5.0",
+        "typescript": "~5.9.3",
+        "typescript-eslint": "^8.46.4",
         "vite": "^7.2.7"
     }
 }
