@@ -1,11 +1,13 @@
-import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
+
 import { OrbitControls } from '@react-three/drei';
-import Table from '@/containers/Table';
-import Helix from '@/containers/Helix';
+import { Canvas } from '@react-three/fiber';
+
+import Loader from '@/components/_ui/Loader';
 import Filters from '@/components/overview/Filters';
 import Header from '@/components/overview/Header';
-import Loader from '@/components/_ui/Loader';
+import Helix from '@/containers/Helix';
+import Table from '@/containers/Table';
 import { useAppSelector } from '@/store/hooks';
 import {
     getElementsError,
@@ -34,16 +36,9 @@ const OverviewPage = () => {
             {elementsStatus === 'succeeded' && (
                 <Canvas style={{ position: 'absolute', zIndex: 1 }}>
                     <Suspense fallback={<Loader />}>
-                        {type === 'Helix' && (
-                            <Helix elements={filteredElements} />
-                        )}
-                        {type === 'Table' && (
-                            <Table elements={filteredElements} />
-                        )}
-                        <OrbitControls
-                            minPolarAngle={Math.PI / 2}
-                            maxPolarAngle={Math.PI / 2}
-                        />
+                        {type === 'Helix' && <Helix elements={filteredElements} />}
+                        {type === 'Table' && <Table elements={filteredElements} />}
+                        <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} />
                         <ambientLight color={0xcc9ff4} intensity={1} />
                     </Suspense>
                 </Canvas>

@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+
 import { createRoutesFromElements, Route } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const router = createBrowserRouter(
     ),
     {
         basename: import.meta.env.BASE_URL,
-    }
+    },
 );
 
 export default router;

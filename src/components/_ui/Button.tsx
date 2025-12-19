@@ -1,8 +1,10 @@
-import { forwardRef, ButtonHTMLAttributes } from 'react';
+import { type ButtonHTMLAttributes } from 'react';
+
 import { cva, type VariantProps } from 'class-variance-authority';
 import clsx from 'clsx';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+export interface ButtonProps
+    extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     isLoading?: boolean;
 }
 
@@ -16,8 +18,7 @@ const buttonVariants = cva(
     {
         variants: {
             variant: {
-                primary:
-                'hover:border-primary active:text-primary hover:cursor-hand',
+                primary: 'hover:border-primary active:text-primary hover:cursor-hand',
             },
 
             size: {
@@ -31,38 +32,30 @@ const buttonVariants = cva(
             variant: 'primary',
             size: 'md',
         },
-    }
+    },
 );
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        {
-            className,
-            variant,
-            size,
-            isLoading,
-            disabled,
-            children,
-            ...props
-        },
-        ref
-    ) => {
-        return (
-            <button
-                ref={ref}
-                className={clsx(buttonVariants({ variant, size }), className)}
-                disabled={disabled || isLoading}
-                {...props}
-            >
-            {isLoading ? (
-                <span className="animate-spin">⏳</span>
-                ) : (
-                    children
-                )}
-            </button>
-        );
-    }
-);
+const Button = ({
+    ref,
+    className,
+    variant,
+    size,
+    isLoading,
+    disabled,
+    children,
+    ...props
+}: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) => {
+    return (
+        <button
+            ref={ref}
+            className={clsx(buttonVariants({ variant, size }), className)}
+            disabled={disabled ?? isLoading}
+            {...props}
+        >
+            {isLoading ? <span className="animate-spin">⏳</span> : children}
+        </button>
+    );
+};
 
 Button.displayName = 'Button';
 

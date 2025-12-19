@@ -1,35 +1,27 @@
+import { Suspense, useMemo, useRef } from 'react';
+
 import { useFrame } from '@react-three/fiber';
-import { FC, Suspense, useMemo, useRef } from 'react';
-import {
-    BallCollider,
-    Physics,
-    RapierRigidBody,
-    RigidBody,
-} from '@react-three/rapier';
+import { BallCollider, Physics, RapierRigidBody, RigidBody } from '@react-three/rapier';
 import { Mesh, Vector3, MathUtils, Color } from 'three';
 
 interface AtomeCoreProps {
     nucleusNumber: number;
 }
 
-const AtomCore: FC<AtomeCoreProps> = ({ nucleusNumber }) => {
+function AtomCore({ nucleusNumber }: AtomeCoreProps) {
     return (
         <Suspense>
             <Physics timeStep="vary" gravity={[0, 0, 0]}>
                 {Array.from({ length: nucleusNumber }, (_, i) => (
                     <AtomCoreElement
                         key={i}
-                        color={
-                            i % 2 === 0
-                                ? new Color(0x816cff)
-                                : new Color(0xe1beff)
-                        }
+                        color={i % 2 === 0 ? new Color(0x816cff) : new Color(0xe1beff)}
                     />
                 ))}
             </Physics>
         </Suspense>
     );
-};
+}
 
 interface AtomCoreElementProps {
     position?: Vector3;
@@ -38,19 +30,16 @@ interface AtomCoreElementProps {
     color: Color;
 }
 
-const AtomCoreElement: FC<AtomCoreElementProps> = ({
+function AtomCoreElement({
     position,
     vec = new Vector3(),
     r = MathUtils.randFloatSpread,
     color,
     ...props
-}) => {
+}: AtomCoreElementProps) {
     const rigidBody = useRef<RapierRigidBody>(null);
     const mesh = useRef<Mesh>(null);
-    const pos = useMemo(
-        () => position || new Vector3(r(10), r(10), r(10)),
-        [position, r],
-    );
+    const pos = useMemo(() => position ?? new Vector3(r(10), r(10), r(10)), [position, r]);
 
     useFrame(() => {
         rigidBody.current?.applyImpulse(
@@ -78,6 +67,6 @@ const AtomCoreElement: FC<AtomCoreElementProps> = ({
             </mesh>
         </RigidBody>
     );
-};
+}
 
 export default AtomCore;

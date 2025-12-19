@@ -1,4 +1,5 @@
-import { ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
+
 import clsx from 'clsx';
 
 export interface DropdownOption<T extends string = string> {
@@ -37,7 +38,7 @@ const Dropdown = <T extends string>({
             disabled={disabled}
             className={clsx(
                 'bg-transparent text-white px-3 py-2 rounded-lg border border-white/30 hover:border-primary focus:outline-none focus:border-primary',
-                className
+                className,
             )}
         >
             {placeholder && (

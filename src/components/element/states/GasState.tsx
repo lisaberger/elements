@@ -1,5 +1,6 @@
-import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
+
+import { useFrame } from '@react-three/fiber';
 import {
     Color,
     Data3DTexture,
@@ -13,7 +14,7 @@ import {
 } from 'three';
 import { ImprovedNoise } from 'three/examples/jsm/Addons.js';
 
-const GasState = () => {
+function GasState() {
     const gasSphere = useRef<Mesh>(null!);
     const gasMaterial = useRef<RawShaderMaterial>(null!);
 
@@ -37,13 +38,7 @@ const GasState = () => {
                         .divideScalar(size)
                         .length();
                 data[i] =
-                    (128 +
-                        128 *
-                            perlin.noise(
-                                (x * scale) / 1.5,
-                                y * scale,
-                                (z * scale) / 1.5,
-                            )) *
+                    (128 + 128 * perlin.noise((x * scale) / 1.5, y * scale, (z * scale) / 1.5)) *
                     d *
                     d;
                 i++;
@@ -96,7 +91,7 @@ const GasState = () => {
             />
         </mesh>
     );
-};
+}
 
 export default GasState;
 

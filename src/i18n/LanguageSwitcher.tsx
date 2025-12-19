@@ -1,5 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { supportedLanguages } from "./config";
+import { useTranslation } from 'react-i18next';
+
+import { supportedLanguages } from './config';
 
 export default function LocaleSwitcher() {
     const { i18n } = useTranslation();
@@ -13,7 +14,7 @@ export default function LocaleSwitcher() {
                 >
                     {Object.entries(supportedLanguages).map(([code, name]) => (
                         <option value={code} key={code}>
-                        {name}
+                            {name}
                         </option>
                     ))}
                 </select>

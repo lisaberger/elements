@@ -1,4 +1,5 @@
-import { FC, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { Vector3, Texture, type Mesh } from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/Addons.js';
@@ -9,7 +10,7 @@ interface ElementProps {
     index: number;
 }
 
-const Element: FC<ElementProps> = ({ position, texture, index }) => {
+function Element({ position, texture, index }: ElementProps) {
     const [hovered, setHovered] = useState(false);
     const boxRef = useRef<Mesh>(null!);
     const vector = useMemo(() => new Vector3(), []);
@@ -45,11 +46,7 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
             onPointerOut={() => setHovered(false)}
             onDoubleClick={onClickHandler}
         >
-            <meshBasicMaterial
-                toneMapped={false}
-                color={boxColor}
-                map={texture}
-            />
+            <meshBasicMaterial toneMapped={false} color={boxColor} map={texture} />
         </mesh>
 
         // TODO: Find way to use roundedBox (texture mapping issue)
@@ -70,6 +67,6 @@ const Element: FC<ElementProps> = ({ position, texture, index }) => {
         //             />
         //         </RoundedBox>
     );
-};
+}
 
 export default Element;

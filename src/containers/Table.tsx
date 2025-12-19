@@ -1,14 +1,16 @@
-import { FC, JSX, useMemo } from 'react';
+import { type JSX, useMemo } from 'react';
+
 import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
-import Element from '@/components/overview/Element';
+
 import type { Element as IElement } from '../types/Element.interface';
+import Element from '@/components/overview/Element';
 
 interface TableProps {
     elements: IElement[];
 }
 
-const Table: FC<TableProps> = ({ elements }) => {
+function Table({ elements }: TableProps) {
     const { camera } = useThree();
 
     const textures = useLoader(

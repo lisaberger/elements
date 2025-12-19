@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
-import Particles from '@/components/start/Particles';
+
 import Intro from '@/components/start/Intro';
+import Particles from '@/components/start/Particles';
 import LanguageSwitcher from '@/i18n/LanguageSwitcher';
 
 const HomePage = () => {

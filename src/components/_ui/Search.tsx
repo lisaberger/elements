@@ -1,5 +1,7 @@
-import { ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
+
 import clsx from 'clsx';
+
 import Icon from './Icon';
 import { IconName } from '@/icons';
 
@@ -10,12 +12,7 @@ interface SearchBarProps {
     className?: string;
 }
 
-function SearchBar({
-    value,
-    onChange,
-    placeholder = 'Search…',
-    className,
-}: SearchBarProps) {
+function SearchBar({ value, onChange, placeholder = 'Search…', className }: SearchBarProps) {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value);
     };
@@ -34,7 +31,7 @@ function SearchBar({
                 className={clsx(
                     'px-4 py-2 rounded-lg rounded-r-none border bg-transparent text-white outline-none w-full',
                     'border-white/30 focus:border-primary',
-                    className
+                    className,
                 )}
             />
 

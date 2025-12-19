@@ -1,31 +1,30 @@
+import { useTranslation } from 'react-i18next';
+
 import Dropdown from '@/components/_ui/Drowdown';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
     filterOptions,
     selectFilters,
     updateFilter,
-    resetFilters
+    resetFilters,
 } from '@/store/slices/filtersSlice';
-import { FiltersKey } from '@/types/Filters.interface';
-import { Filter } from '@/types/Filter.interface';
-import { useTranslation } from 'react-i18next';
+import { type Filter } from '@/types/Filter.interface';
+import { type FiltersKey } from '@/types/Filters.interface';
 
 function Filters() {
     const { t } = useTranslation('filters');
-    
+
     const dispatch = useAppDispatch();
     const filters = useAppSelector(filterOptions);
     const selectedFilters = useAppSelector(selectFilters);
 
-    const handleChange =
-        (key: FiltersKey) =>
-        (value: string) => {
-            dispatch(updateFilter({ key, value }));
-        };
+    const handleChange = (key: FiltersKey) => (value: string) => {
+        dispatch(updateFilter({ key, value }));
+    };
 
     const handleResetFilters = () => {
         dispatch(resetFilters());
-    }
+    };
 
     return (
         <section className="mb-4 md:mb-10 w-full flex justify-center px-4 gap-2 absolute bottom-0 z-2">
@@ -33,7 +32,7 @@ function Filters() {
                 // Reset option at the beginning
                 const optionsWithReset = [
                     { value: '', label: t('buttons.resetFilter') },
-                    
+
                     // real options
                     ...options.map((option) => ({
                         value: option.value,
@@ -61,6 +60,6 @@ function Filters() {
             </button>
         </section>
     );
-};
+}
 
 export default Filters;

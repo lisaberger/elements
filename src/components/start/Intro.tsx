@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import Logo from '@/components/_ui/Logo';
-import Button from '@/components/_ui/Button';
-import { useTranslation } from "react-i18next";
+
 import Icon from '../_ui/Icon';
+import Button from '@/components/_ui/Button';
+import Logo from '@/components/_ui/Logo';
 import { IconName } from '@/icons';
 import logo from '/logo/elements-rgb-wort-bild.svg';
 
@@ -18,16 +19,14 @@ function Intro() {
         <div className="flex flex-col items-center justify-center h-full text-white text-center relative">
             <Logo src={logo} />
 
-            <p className="max-w-md mt-4 mb-8 px-8">
-                {t('intro')}
-            </p>
+            <p className="max-w-md mt-4 mb-8 px-8">{t('intro')}</p>
 
             <Button onClick={handleAppStart}>
                 {t('buttons.run')}
-                <Icon name={IconName.RocketLaunch} className='ml-2 inline-block'/>
+                <Icon name={IconName.RocketLaunch} className="ml-2 inline-block" />
             </Button>
         </div>
     );
-};
+}
 
 export default Intro;

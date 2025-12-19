@@ -1,11 +1,12 @@
-import * as React from 'react';
+import { type ImgHTMLAttributes } from 'react';
+
 import { cva, type VariantProps } from 'class-variance-authority';
 import clsx from 'clsx';
 
 export type LogoSize = 'small' | 'medium' | 'large';
 export type LogoVariant = 'primary' | 'secondary' | 'monochrome';
 
-interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement>, VariantProps<typeof logoStyles> {
+interface LogoProps extends ImgHTMLAttributes<HTMLImageElement>, VariantProps<typeof logoStyles> {
     src: string;
     size?: LogoSize;
     variant?: LogoVariant;
@@ -19,9 +20,9 @@ const logoStyles = cva(
     {
         variants: {
             size: {
-                small: 'w-24',   // ~96px
-                medium: 'w-48',  // ~192px
-                large: 'w-64',   // ~256px
+                small: 'w-24', // ~96px
+                medium: 'w-48', // ~192px
+                large: 'w-64', // ~256px
             },
             variant: {
                 primary: 'filter-none',
@@ -33,37 +34,32 @@ const logoStyles = cva(
             size: 'medium',
             variant: 'primary',
         },
-    }
+    },
 );
 
-const Logo = React.forwardRef<HTMLImageElement, LogoProps>(
-    (
-        { 
-            src,
-            size = 'medium',
-            variant = 'primary',
-            className,
-            onClick,
-            ...props
-        }, ref
-    ) => {
-        return (
-            <img
-                ref={ref}
-                src={src}
-                alt="Elements Logo"
-                onClick={onClick}
-                className={
-                    clsx(
-                        logoStyles({ size, variant }), 
-                        className, 
-                        onClick && 'hover:scale-105 active:scale-95'
-                    )
-                }
-                {...props}
-            />
-        );
-    }
-);
+const Logo = ({
+    ref,
+    src,
+    size = 'medium',
+    variant = 'primary',
+    className,
+    onClick,
+    ...props
+}: LogoProps & { ref?: React.RefObject<HTMLImageElement | null> }) => {
+    return (
+        <img
+            ref={ref}
+            src={src}
+            alt="Elements Logo"
+            onClick={onClick}
+            className={clsx(
+                logoStyles({ size, variant }),
+                className,
+                onClick && 'hover:scale-105 active:scale-95',
+            )}
+            {...props}
+        />
+    );
+};
 
 export default Logo;

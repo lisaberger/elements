@@ -1,21 +1,18 @@
-import { FC } from 'react';
-import type { Element } from '@/types/Element.interface';
 import StandardStates from '@/components/element/StandardStates';
+import type { Element } from '@/types/Element.interface';
 
 interface InfoProps {
     element: Element | null;
 }
 
-const Info: FC<InfoProps> = ({ element }) => {
+function Info({ element }: InfoProps) {
     return (
         element && (
             <div className="flex flex-col items-center text-white">
                 <div className="flex flex-col items-center">
                     <p className="text-">{element.atomicNumber}</p>
                     <h1 className="text-8xl line-height-1">{element.symbol}</h1>
-                    <h2 className="text-2xl mb-4 font-medium">
-                        {element.name}
-                    </h2>
+                    <h2 className="text-2xl mb-4 font-medium">{element.name}</h2>
                 </div>
 
                 <div className="p-4">
@@ -42,11 +39,7 @@ const Info: FC<InfoProps> = ({ element }) => {
                 </div>
 
                 <div>
-                    <StandardStates
-                        state={
-                            element.standardState as 'solid' | 'liquid' | 'gas'
-                        }
-                    />
+                    <StandardStates state={element.standardState as 'solid' | 'liquid' | 'gas'} />
                 </div>
 
                 <p className="text-base">
@@ -56,6 +49,6 @@ const Info: FC<InfoProps> = ({ element }) => {
             </div>
         )
     );
-};
+}
 
 export default Info;

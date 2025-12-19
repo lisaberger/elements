@@ -1,15 +1,14 @@
-import { FC } from 'react';
+import AtomCore from '@/components/element/atom/AtomCore';
+import AtomShell from '@/components/element/atom/AtomShell';
 import type { Element } from '@/types/Element.interface';
 import { determineAtomConfiguration } from '@/utils/determineAtomConfiguration';
-import AtomShell from '@/components/element/atom/AtomShell';
-import AtomCore from '@/components/element/atom/AtomCore';
 
 interface AtomProps {
     element: Element;
     state?: { paused: boolean };
 }
 
-const Atom: FC<AtomProps> = ({ element, state }) => {
+function Atom({ element, state }: AtomProps) {
     const atomConfiguration = determineAtomConfiguration(element);
 
     const atomicNumber = +element.atomicNumber;
@@ -31,5 +30,6 @@ const Atom: FC<AtomProps> = ({ element, state }) => {
             <AtomShell electronDistribution={atomConfiguration} paused={state?.paused} />
         </>
     );
-};
+}
+
 export default Atom;

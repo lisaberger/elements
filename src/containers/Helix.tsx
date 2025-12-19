@@ -1,14 +1,16 @@
+import { type JSX, useMemo } from 'react';
+
 import { useThree, useLoader } from '@react-three/fiber';
-import { FC, JSX, useMemo } from 'react';
 import { TextureLoader, Vector3 } from 'three';
-import Element from '@/components/overview/Element';
+
 import type { Element as IElement } from '../types/Element.interface';
+import Element from '@/components/overview/Element';
 
 interface HelixProps {
     elements: IElement[];
 }
 
-const Helix: FC<HelixProps> = ({ elements }) => {
+function Helix({ elements }: HelixProps) {
     const { camera } = useThree();
 
     const textures = useLoader(
@@ -30,11 +32,7 @@ const Helix: FC<HelixProps> = ({ elements }) => {
             result.push(
                 <Element
                     key={i}
-                    position={new Vector3().setFromCylindricalCoords(
-                        8,
-                        theta,
-                        y,
-                    )}
+                    position={new Vector3().setFromCylindricalCoords(8, theta, y)}
                     texture={textures[+elements[i].atomicNumber - 1]}
                     index={+elements[i].atomicNumber}
                 />,
@@ -44,6 +42,6 @@ const Helix: FC<HelixProps> = ({ elements }) => {
     }, [elements, textures]);
 
     return <>{helixElements}</>;
-};
+}
 
 export default Helix;

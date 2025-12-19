@@ -1,4 +1,4 @@
 export enum ViewType {
     Helix = 'Helix',
-    Table = 'Table'
+    Table = 'Table',
 }

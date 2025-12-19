@@ -1,6 +1,7 @@
-import { FC, useRef, useMemo } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useRef, useMemo } from 'react';
+
 import { Points } from '@react-three/drei';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { AdditiveBlending, type Points as IPoints, TextureLoader } from 'three';
 
 // Help
@@ -10,7 +11,7 @@ interface ParticlesProps {
     count: number;
 }
 
-const Particles: FC<ParticlesProps> = ({ count }) => {
+function Particles({ count }: ParticlesProps) {
     const points = useRef<IPoints>(null!);
 
     // Create random initital particle positions

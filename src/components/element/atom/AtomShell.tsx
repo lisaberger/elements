@@ -1,6 +1,7 @@
 import { useRef, useMemo } from 'react';
-import { DoubleSide, Group, Euler } from 'three';
+
 import { useFrame } from '@react-three/fiber';
+import { DoubleSide, Group, Euler } from 'three';
 
 interface AtomShellProps {
     electronDistribution: number[];
@@ -13,25 +14,29 @@ function AtomShell({
     electronDistribution,
     baseRotationSpeed = 0.01,
     electronSpeed = 0.02,
-    paused = false
-    
+    paused = false,
 }: AtomShellProps) {
     const shellGroups = useRef<Group[]>([]);
 
     const shellTilts = useMemo(
         () =>
             electronDistribution.map(
-                () => new Euler(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI)
+                () =>
+                    new Euler(
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI,
+                    ),
             ),
-        [electronDistribution]
+        [electronDistribution],
     );
 
     const electronAngles = useMemo(
         () =>
             electronDistribution.map((count) =>
-                Array.from({ length: count }, () => Math.random() * 2 * Math.PI)
+                Array.from({ length: count }, () => Math.random() * 2 * Math.PI),
             ),
-        [electronDistribution]
+        [electronDistribution],
     );
 
     useFrame(() => {
@@ -40,8 +45,9 @@ function AtomShell({
         shellGroups.current.forEach((shellGroup, shellIndex) => {
             if (!shellGroup) return;
 
-            const shellRotationSpeed = baseRotationSpeed * (0.5 + shellIndex / electronDistribution.length);
-            
+            const shellRotationSpeed =
+                baseRotationSpeed * (0.5 + shellIndex / electronDistribution.length);
+
             shellGroup.rotation.y += shellRotationSpeed;
             shellGroup.rotation.x += shellRotationSpeed / 2;
 
@@ -52,7 +58,7 @@ function AtomShell({
                     electronAngles[shellIndex][electronIndex - 1] += electronSpeed; // Update Winkel
 
                     const angle = electronAngles[shellIndex][electronIndex - 1];
-                    
+
                     child.position.x = radius * Math.cos(angle);
                     child.position.y = radius * Math.sin(angle);
                 }
@@ -69,27 +75,29 @@ function AtomShell({
                 const shellRadius = radius + shellIndex * distance;
 
                 const shellMesh = (
-                <mesh key={`shell_${shellIndex}`}>
-                    <ringGeometry args={[shellRadius, shellRadius + 0.1, 80]} />
-                    <meshBasicMaterial color={0x816cff} side={DoubleSide} />
-                </mesh>
-                );
-
-                const electrons = Array.from({ length: shellElectronCount }).map((_, electronIndex) => {
-                const angle = electronAngles[shellIndex][electronIndex];
-                const x = shellRadius * Math.cos(angle);
-                const y = shellRadius * Math.sin(angle);
-
-                return (
-                    <mesh
-                        key={`electron_${shellIndex}_${electronIndex}`}
-                        position={[x, y, 0]}
-                    >
-                        <sphereGeometry args={[1, 32, 16]} />
-                        <meshStandardMaterial color={0xffffff} />
+                    <mesh key={`shell_${shellIndex}`}>
+                        <ringGeometry args={[shellRadius, shellRadius + 0.1, 80]} />
+                        <meshBasicMaterial color={0x816cff} side={DoubleSide} />
                     </mesh>
                 );
-                });
+
+                const electrons = Array.from({ length: shellElectronCount }).map(
+                    (_, electronIndex) => {
+                        const angle = electronAngles[shellIndex][electronIndex];
+                        const x = shellRadius * Math.cos(angle);
+                        const y = shellRadius * Math.sin(angle);
+
+                        return (
+                            <mesh
+                                key={`electron_${shellIndex}_${electronIndex}`}
+                                position={[x, y, 0]}
+                            >
+                                <sphereGeometry args={[1, 32, 16]} />
+                                <meshStandardMaterial color={0xffffff} />
+                            </mesh>
+                        );
+                    },
+                );
 
                 return (
                     <group
@@ -104,6 +112,6 @@ function AtomShell({
             })}
         </group>
     );
-};
+}
 
 export default AtomShell;

@@ -1,7 +1,7 @@
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
 
 // Heroicons
-import { 
+import {
     HomeIcon,
     UserIcon,
     RocketLaunchIcon,
@@ -13,15 +13,14 @@ import {
 } from '@heroicons/react/24/outline';
 
 // SVGs
-import CursorPointerSvg from './cursor-arrow.svg';
-import CursorHandSvg from './cursor-hand.svg';
-
-// PNGs
 import ArrowLeftPng from './arrow-left.png';
 import ArrowRightPng from './arrow-right.png';
+import CursorPointerSvg from './cursor-arrow.svg';
+import CursorHandSvg from './cursor-hand.svg';
+// PNGs
 import xPng from './x.png';
 
-export enum IconName {
+export const enum IconName {
     Home = 'home',
     User = 'user',
     RocketLaunch = 'rocketLaunch',
@@ -34,7 +33,7 @@ export enum IconName {
     Funnel = 'funnel',
     AdjustmentsHorizontal = 'adjustmentsHorizontal',
     Play = 'play',
-    Stop = 'stop'
+    Stop = 'stop',
 }
 
 export const icons: Record<string, ComponentType<any> | string> = {

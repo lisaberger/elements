@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Element } from '@/types/Element.interface';
-import { RootState } from '@/store/store';
+
 import { selectSearchQuery } from './searchSlice';
+import { type RootState } from '@/store/store';
+import { type Element } from '@/types/Element.interface';
 
 interface ElementState {
     elements: Element[];
@@ -15,29 +16,24 @@ const initialState: ElementState = {
     error: null,
 };
 
-export const fetchElements = createAsyncThunk<Element[]>(
-    'elements/fetchElements',
-    async () => {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/periodic-table.json`);
+export const fetchElements = createAsyncThunk<Element[]>('elements/fetchElements', async () => {
+    const response = await fetch(`${import.meta.env.BASE_URL}data/periodic-table.json`);
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch elements');
-        }
+    if (!response.ok) {
+        throw new Error('Failed to fetch elements');
+    }
 
-        return response.json();
+    return response.json();
+});
+
+export const fetchElementByAtomicNumber = createAsyncThunk<Element | null, number>(
+    'elements/fetchElementByAtomicNumber',
+    async (atomicNumber, { getState }) => {
+        const elements = (getState() as RootState).elements.elements;
+        const foundElement = elements.find((element) => +element.atomicNumber === atomicNumber);
+        return foundElement || null;
     },
 );
-
-export const fetchElementByAtomicNumber = createAsyncThunk<
-    Element | null,
-    number
->('elements/fetchElementByAtomicNumber', async (atomicNumber, { getState }) => {
-    const elements = (getState() as RootState).elements.elements;
-    const foundElement = elements.find(
-        (element) => +element.atomicNumber === atomicNumber,
-    );
-    return foundElement || null;
-});
 
 const elementsSlice = createSlice({
     name: 'elements',
@@ -65,73 +61,59 @@ const elementsSlice = createSlice({
 export const getElementsStatus = (state: RootState) => state.elements.status;
 export const getElementsError = (state: RootState) => state.elements.error;
 export const selectAllElements = (state: RootState) => state.elements.elements;
-export const selectElementByAtomicNumber = (
-    state: RootState,
-    atomicNumber: number,
-) => {
+export const selectElementByAtomicNumber = (state: RootState, atomicNumber: number) => {
     return (
-        state.elements.elements.find(
-            (element) => +element.atomicNumber === atomicNumber,
-        ) || null
+        state.elements.elements.find((element) => +element.atomicNumber === atomicNumber) || null
     );
 };
 
 export const uniqueGroupBlocks = (state: RootState) => {
     const uniqueGroupBlocks = new Set<string>();
-    state.elements.elements.forEach((element) =>
-        uniqueGroupBlocks.add(element.groupBlock),
-    );
+    state.elements.elements.forEach((element) => uniqueGroupBlocks.add(element.groupBlock));
     return uniqueGroupBlocks;
 };
 
 export const uniqueBondingTypes = (state: RootState) => {
     const uniqueBondingTypes = new Set<string>();
-    state.elements.elements.forEach((element) =>
-        uniqueBondingTypes.add(element.bondingType),
-    );
+    state.elements.elements.forEach((element) => uniqueBondingTypes.add(element.bondingType));
     return uniqueBondingTypes;
 };
 
 export const uniqueStandardStates = (state: RootState) => {
     const uniqueStandardStates = new Set<string>();
-    state.elements.elements.forEach((element) =>
-        uniqueStandardStates.add(element.standardState),
-    );
+    state.elements.elements.forEach((element) => uniqueStandardStates.add(element.standardState));
     return uniqueStandardStates;
 };
 
-export const includeElementByStandardState =
-    (state: RootState) => (element: Element) => {
-        const selectedStandardState = state.filters.standardState;
+export const includeElementByStandardState = (state: RootState) => (element: Element) => {
+    const selectedStandardState = state.filters.standardState;
 
-        if (!selectedStandardState) {
-            return true;
-        }
+    if (!selectedStandardState) {
+        return true;
+    }
 
-        return selectedStandardState === element.standardState;
-    };
+    return selectedStandardState === element.standardState;
+};
 
-export const includeElementByBondingType =
-    (state: RootState) => (element: Element) => {
-        const selectedBondingType = state.filters.bondingType;
+export const includeElementByBondingType = (state: RootState) => (element: Element) => {
+    const selectedBondingType = state.filters.bondingType;
 
-        if (!selectedBondingType) {
-            return true;
-        }
+    if (!selectedBondingType) {
+        return true;
+    }
 
-        return selectedBondingType === element.bondingType;
-    };
+    return selectedBondingType === element.bondingType;
+};
 
-export const includeElementByGrouBlock =
-    (state: RootState) => (element: Element) => {
-        const selectedGroupBlock = state.filters.groupBlock;
+export const includeElementByGrouBlock = (state: RootState) => (element: Element) => {
+    const selectedGroupBlock = state.filters.groupBlock;
 
-        if (!selectedGroupBlock) {
-            return true;
-        }
+    if (!selectedGroupBlock) {
+        return true;
+    }
 
-        return selectedGroupBlock === element.groupBlock;
-    };
+    return selectedGroupBlock === element.groupBlock;
+};
 
 export const filteredElements = (state: RootState) => {
     return state.elements.elements

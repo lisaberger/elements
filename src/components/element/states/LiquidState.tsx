@@ -1,10 +1,9 @@
+import { useRef } from 'react';
+
 import { useFrame } from '@react-three/fiber';
-import { useRef, FC } from 'react';
 import { Mesh, Color } from 'three';
 
-interface LiquidStateProps {}
-
-const LiquidState: FC<LiquidStateProps> = () => {
+function LiquidState() {
     const liquidSphere = useRef<Mesh>(null!);
 
     useFrame((state) => {
@@ -30,7 +29,7 @@ const LiquidState: FC<LiquidStateProps> = () => {
             />
         </mesh>
     );
-};
+}
 
 export default LiquidState;
 

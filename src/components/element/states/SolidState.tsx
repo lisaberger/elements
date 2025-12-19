@@ -1,8 +1,9 @@
-import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
+
+import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
 
-const SolidState = () => {
+function SolidState() {
     const solidCube = useRef<Mesh>(null!);
 
     useFrame((state) => {

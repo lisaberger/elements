@@ -1,16 +1,18 @@
-import { FC, Suspense, useEffect, useRef } from 'react';
-import LiquidState from './states/LiquidState';
-import SolidState from './states/SolidState';
-import GasState from './states/GasState';
+import { Suspense, useEffect, useRef } from 'react';
+
 import { OrbitControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+
+import GasState from './states/GasState';
+import LiquidState from './states/LiquidState';
+import SolidState from './states/SolidState';
 
 interface StandardStatesProps {
     state: 'solid' | 'gas' | 'liquid';
 }
 
-const StandardStates: FC<StandardStatesProps> = ({ state }) => {
-    const standardStates: { [key: string]: string } = {
+function StandardStates({ state }: StandardStatesProps) {
+    const standardStates: Record<string, string> = {
         liquid: '/states/fluid_gif_800px_transparent.gif',
         solid: '/states/cube_gif_800px_transparent.gif',
         gas: '/states/cloud_gif_800px_violet.gif',
@@ -39,9 +41,7 @@ const StandardStates: FC<StandardStatesProps> = ({ state }) => {
     }, []);
 
     return (
-        <Suspense
-            fallback={<img className="w-8" src={standardStates[state]} />}
-        >
+        <Suspense fallback={<img className="w-8" src={standardStates[state]} />}>
             <Canvas ref={canvasRef}>
                 <Stage />
                 <OrbitControls />
@@ -51,6 +51,6 @@ const StandardStates: FC<StandardStatesProps> = ({ state }) => {
             </Canvas>
         </Suspense>
     );
-};
+}
 
 export default StandardStates;
