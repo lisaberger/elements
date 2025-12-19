@@ -1,4 +1,4 @@
-import { Element } from '../types/Element.interface';
+import { type Element } from '../types/Element.interface';
 
 /**
  * Determines the electron distribution in different shells based on the given element's electronic configuration.
@@ -7,10 +7,7 @@ import { Element } from '../types/Element.interface';
  */
 export const determineAtomConfiguration = (element: Element) => {
     // Mapping of electron configurations to the number of shells and base configuration
-    const configMapping: Record<
-        string,
-        { shells: number; baseConfig: string }
-    > = {
+    const configMapping: Record<string, { shells: number; baseConfig: string }> = {
         '[He]': { shells: 2, baseConfig: '1s2' },
         '[Ne]': { shells: 3, baseConfig: '1s2 2s2 2p6' },
         '[Ar]': { shells: 4, baseConfig: '1s2 2s2 2p6 3s2 3p6' },
