@@ -5,12 +5,11 @@ import { Canvas } from '@react-three/fiber';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
+import logo from '@/assets/logo/elements-rgb-wort-bild.svg';
 import { Atom, ElementModal, Info, Icon, Logo } from '@/components';
 import { IconName } from '@/icons';
 import { RouteName } from '@/router';
 import { useAppSelector, selectElementByAtomicNumber } from '@/store';
-
-import logo from '/logo/elements-rgb-wort-bild.svg';
 
 function ElementPage() {
     const { id } = useParams();

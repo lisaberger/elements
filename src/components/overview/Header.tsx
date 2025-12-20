@@ -3,12 +3,11 @@ import { type HTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import logo from '@/assets/logo/elements-rgb-wort-bild.svg';
 import { Logo, Search, SelectButton } from '@/components';
 import { RouteName } from '@/router/route-name';
 import { useAppDispatch, useAppSelector, setSearchQuery } from '@/store';
 import { ViewType } from '@/types';
-
-import logo from '/logo/elements-rgb-wort-bild.svg';
 
 interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
     onTypeChange: (type: ViewType) => void;

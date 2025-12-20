@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import logo from '@/assets/logo/elements-rgb-wort-bild.svg';
 import { Icon, Button, Logo } from '@/components';
 import { IconName } from '@/icons';
-import logo from '/logo/elements-rgb-wort-bild.svg';
 import { RouteName } from '@/router';
 
 export function Intro() {
