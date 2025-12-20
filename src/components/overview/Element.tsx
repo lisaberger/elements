@@ -30,8 +30,8 @@ function Element({ position, texture, index }: ElementProps) {
 
     const navigate = useNavigate();
 
-    const onClickHandler = () => {
-        navigate(`/element/${index}`);
+    const onClickHandler = (): void => {
+        void navigate(`/element/${index}`);
     };
 
     const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1);

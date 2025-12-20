@@ -1,4 +1,4 @@
-import { type ComponentType } from 'react';
+import { type ComponentType, type SVGProps } from 'react';
 
 // Heroicons
 import {
@@ -36,7 +36,7 @@ export const enum IconName {
     Stop = 'stop',
 }
 
-export const icons: Record<string, ComponentType<any> | string> = {
+export const icons: Record<string, ComponentType<SVGProps<SVGSVGElement>> | string> = {
     // Heroicons
     [IconName.Home]: HomeIcon,
     [IconName.User]: UserIcon,

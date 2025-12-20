@@ -5,7 +5,7 @@ import { type Element } from '../types/Element.interface';
  * @param element - The element for which to determine the electron distribution.
  * @returns An array representing the electron distribution in different shells of the atom.
  */
-export const determineAtomConfiguration = (element: Element) => {
+export const determineAtomConfiguration = (element: Element): number[] => {
     // Mapping of electron configurations to the number of shells and base configuration
     const configMapping: Record<string, { shells: number; baseConfig: string }> = {
         '[He]': { shells: 2, baseConfig: '1s2' },
@@ -37,12 +37,12 @@ export const determineAtomConfiguration = (element: Element) => {
 
     // Split the modified configuration into parts and initialize an array for electron distribution
     const parts = config.split(' ');
-    const electronDistribution = new Array(numShells).fill(0);
+    const electronDistribution = new Array(numShells).fill(0) as number[];
 
     // Determine electron distribution for each shell
-    for (let i = 0; i < parts.length; i++) {
-        const shellNumber = parseInt(parts[i].substring(0, 1));
-        const count = parseInt(parts[i].substring(2));
+    for (const part of parts) {
+        const shellNumber = parseInt(part.substring(0, 1));
+        const count = parseInt(part.substring(2));
         electronDistribution[shellNumber - 1] += count;
     }
 

@@ -36,8 +36,8 @@ const OverviewPage = () => {
             {elementsStatus === 'succeeded' && (
                 <Canvas style={{ position: 'absolute', zIndex: 1 }}>
                     <Suspense fallback={<Loader />}>
-                        {type === 'Helix' && <Helix elements={filteredElements} />}
-                        {type === 'Table' && <Table elements={filteredElements} />}
+                        {type === ViewType.Helix && <Helix elements={filteredElements} />}
+                        {type === ViewType.Table && <Table elements={filteredElements} />}
                         <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} />
                         <ambientLight color={0xcc9ff4} intensity={1} />
                     </Suspense>

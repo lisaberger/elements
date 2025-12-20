@@ -12,7 +12,7 @@ function Intro() {
     const { t } = useTranslation();
 
     const handleAppStart = () => {
-        navigate('/all');
+        void navigate('/all');
     };
 
     return (

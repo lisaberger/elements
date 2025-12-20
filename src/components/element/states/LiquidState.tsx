@@ -9,8 +9,11 @@ function LiquidState() {
     useFrame((state) => {
         const { clock } = state;
 
+        /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+        // TODO Fix linting error
         // @ts-expect-error shaderMaterial not recognized by tsc
         liquidSphere.current.material.uniforms.uTime.value = clock.elapsedTime;
+        /* eslint-enable @typescript-eslint/no-unsafe-member-access */
     });
 
     return (

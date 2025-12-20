@@ -33,14 +33,14 @@ const ElementPage = () => {
     const navigate = useNavigate();
 
     const returnHandler = () => {
-        navigate('/all');
+        void navigate('/all');
     };
 
-    const onArrowClickHandler = (direction: string) => {
+    const onArrowClickHandler = (direction: string): void => {
         if (direction === 'left') {
-            navigate(`/element/${Number(id) - 1}`);
+            void navigate(`/element/${Number(id) - 1}`);
         } else {
-            navigate(`/element/${Number(id) + 1}`);
+            void navigate(`/element/${Number(id) + 1}`);
         }
     };
 
@@ -68,22 +68,41 @@ const ElementPage = () => {
                         >
                             {element && <Atom element={element} state={{ paused }} />}
                             <OrbitControls />
-                            <hemisphereLight position={[0, 0, 10]} color={0xffffff} intensity={2.25} />
+                            <hemisphereLight
+                                position={[0, 0, 10]}
+                                color={0xffffff}
+                                intensity={2.25}
+                            />
                         </Canvas>
-                        <button className="p-4 md:px-8  absolute z-4 top-1/2 cursor-hand" onClick={() => onArrowClickHandler('left')}>
+                        <button
+                            className="p-4 md:px-8  absolute z-4 top-1/2 cursor-hand"
+                            onClick={() => onArrowClickHandler('left')}
+                        >
                             <Icon name={IconName.ArrowLeft} />
                         </button>
-                        <button className="right-0 top-1/2 p-4 md:px-8 absolute cursor-hand" onClick={() => onArrowClickHandler('right')}>
+                        <button
+                            className="right-0 top-1/2 p-4 md:px-8 absolute cursor-hand"
+                            onClick={() => onArrowClickHandler('right')}
+                        >
                             <Icon name={IconName.ArrowRight} />
                         </button>
                     </div>
-                    <button className="absolute top-8 left-1/2 transform -translate-x-1/2 p-2 bg-primary text-white rounded-lg z-5" onClick={() => setPaused((prev) => !prev)}>
-                        <Icon name={paused ? IconName.Play : IconName.Stop} className="inline-block" />
+                    <button
+                        className="absolute top-8 left-1/2 transform -translate-x-1/2 p-2 bg-primary text-white rounded-lg z-5"
+                        onClick={() => setPaused((prev) => !prev)}
+                    >
+                        <Icon
+                            name={paused ? IconName.Play : IconName.Stop}
+                            className="inline-block"
+                        />
                         {paused ? t('startAnimation') : t('stopAnimation')}
                     </button>
 
                     {/* Open Modal Button */}
-                    <button className="absolute left-8 bottom-8 p-2 text-white rounded z-5 hover:cursor-hand" onClick={() => setShowModal(true)}>
+                    <button
+                        className="absolute left-8 bottom-8 p-2 text-white rounded z-5 hover:cursor-hand"
+                        onClick={() => setShowModal(true)}
+                    >
                         Show Configuration
                     </button>
                 </section>
@@ -92,7 +111,9 @@ const ElementPage = () => {
                     <Info element={element} />
                 </section>
             </main>
-            {showModal && element && <ElectronConfigModal element={element} onClose={() => setShowModal(false)} />}
+            {showModal && element && (
+                <ElectronConfigModal element={element} onClose={() => setShowModal(false)} />
+            )}
         </>
     );
 };

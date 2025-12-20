@@ -9,7 +9,7 @@ import { store } from '@/store/store';
 
 function App() {
     useEffect(() => {
-        store.dispatch(fetchElements());
+        void store.dispatch(fetchElements());
     }, []);
 
     return (

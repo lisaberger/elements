@@ -23,9 +23,12 @@ function AtomShell({
             electronDistribution.map(
                 () =>
                     new Euler(
+                        /* eslint-disable react-hooks/purity */
+                        // TODO fix lint error
                         Math.random() * Math.PI,
                         Math.random() * Math.PI,
                         Math.random() * Math.PI,
+                        /* eslint-enable react-hooks/purity */
                     ),
             ),
         [electronDistribution],

@@ -20,6 +20,6 @@ function SolidState() {
             <meshStandardMaterial />
         </mesh>
     );
-};
+}
 
 export default SolidState;

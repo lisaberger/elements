@@ -20,10 +20,13 @@ function Particles({ count }: ParticlesProps) {
         const positions = new Float32Array(count * 3);
 
         for (let i = 0; i < count; i++) {
+            /* eslint-disable react-hooks/purity */
+            // TODO Fix linting error
             // Generate random values for x, y, and z on every loop
             const x = Math.random() * 20 - 10;
             const y = Math.random() * 20 - 10;
             const z = Math.random() * 20 - 10;
+            /* eslint-enable react-hooks/purity */
 
             // Add the 3 values to the attribute array for every loop
             positions.set([x, y, z], i * 3);
@@ -67,6 +70,6 @@ function Particles({ count }: ParticlesProps) {
             />
         </Points>
     );
-};
+}
 
 export default Particles;

@@ -24,7 +24,6 @@ function Table({ elements }: TableProps) {
     // rows and cols for the grid
     let row = Math.round(118 / 16 / 2) - 1;
     let col = -8;
-    let counter = 0;
 
     camera.position.set(0, 0, -15);
 
@@ -46,13 +45,11 @@ function Table({ elements }: TableProps) {
             );
             // increase the column
             col++;
-            // increase c for each found element
-            counter++;
         }
         return result;
     }, [elements, textures]);
 
     return <>{tableElements}</>;
-};
+}
 
 export default Table;

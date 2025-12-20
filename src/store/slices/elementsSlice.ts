@@ -18,20 +18,18 @@ const initialState: ElementState = {
 
 export const fetchElements = createAsyncThunk<Element[]>('elements/fetchElements', async () => {
     const response = await fetch(`${import.meta.env.BASE_URL}data/periodic-table.json`);
+    if (!response.ok) throw new Error('Failed to fetch elements');
 
-    if (!response.ok) {
-        throw new Error('Failed to fetch elements');
-    }
-
-    return response.json();
+    const data = (await response.json()) as Element[];
+    return data ?? [];
 });
 
 export const fetchElementByAtomicNumber = createAsyncThunk<Element | null, number>(
     'elements/fetchElementByAtomicNumber',
-    async (atomicNumber, { getState }) => {
+    (atomicNumber, { getState }) => {
         const elements = (getState() as RootState).elements.elements;
         const foundElement = elements.find((element) => +element.atomicNumber === atomicNumber);
-        return foundElement || null;
+        return foundElement ?? null;
     },
 );
 
@@ -50,7 +48,7 @@ const elementsSlice = createSlice({
             })
             .addCase(fetchElements.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message || 'Unknown error';
+                state.error = action.error.message ?? 'Unknown error';
             });
     },
 });
@@ -63,7 +61,7 @@ export const getElementsError = (state: RootState) => state.elements.error;
 export const selectAllElements = (state: RootState) => state.elements.elements;
 export const selectElementByAtomicNumber = (state: RootState, atomicNumber: number) => {
     return (
-        state.elements.elements.find((element) => +element.atomicNumber === atomicNumber) || null
+        state.elements.elements.find((element) => +element.atomicNumber === atomicNumber) ?? null
     );
 };
 

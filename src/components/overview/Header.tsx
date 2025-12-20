@@ -30,7 +30,7 @@ function Header({ onTypeChange }: HeaderProps) {
 
     return (
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
-            <Logo src={logo} onClick={() => navigate('/')} />
+            <Logo src={logo} onClick={() => void navigate('/')} />
 
             <SearchBar
                 value={searchQuery}

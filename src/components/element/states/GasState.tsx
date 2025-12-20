@@ -53,19 +53,24 @@ function GasState() {
     gasTexture.unpackAlignment = 1;
     gasTexture.needsUpdate = true;
 
+    /* eslint-disable react-hooks/refs */
     if (gasSphere.current) {
         gasSphere.current.scale.set(5, 5, 5);
     }
+    /* eslint-enable react-hooks/refs */
 
     useFrame((state) => {
         const { camera } = state;
 
+        /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+        // TODO Fix linting error
         // @ts-expect-error shaderMaterial not recognized by tsc
         gasSphere.current.material.uniforms.cameraPos.value = camera.position;
         gasSphere.current.rotation.y = -performance.now() / 7500;
 
         // @ts-expect-error shaderMaterial not recognized by tsc
         gasSphere.current.material.uniforms.frame.value++;
+        /* eslint-enable @typescript-eslint/no-unsafe-member-access */
     });
 
     return (

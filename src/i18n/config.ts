@@ -43,6 +43,7 @@ i18n.use(initReactI18next)
         backend: {
             loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
         },
-    });
+    })
+    .catch((err) => console.error('i18n init failed', err));
 
 export default i18n;
