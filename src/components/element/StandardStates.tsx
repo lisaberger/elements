@@ -4,28 +4,22 @@ import { OrbitControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
 import { GasState, LiquidState, SolidState } from './states';
+import { StandardState } from '@/types';
 
 interface StandardStatesProps {
-    state: 'solid' | 'gas' | 'liquid';
+    state: StandardState;
 }
 
 export function StandardStates({ state }: StandardStatesProps) {
-    const standardStates: Record<string, string> = {
-        liquid: '/states/fluid_gif_800px_transparent.gif',
-        solid: '/states/cube_gif_800px_transparent.gif',
-        gas: '/states/cloud_gif_800px_violet.gif',
-    };
-
-    // Reference for the canvas element
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    // Function to handle resize
+
     const handleResize = () => {
         const canvas = canvasRef.current;
         if (canvas) {
             // Set canvas dimensions
             const width = canvas.offsetWidth;
             canvas.width = width;
-            canvas.height = width; // Set height equal to width for a quadratic canvas
+            canvas.height = width;
         }
     };
 
@@ -39,13 +33,13 @@ export function StandardStates({ state }: StandardStatesProps) {
     }, []);
 
     return (
-        <Suspense fallback={<img className="w-8" src={standardStates[state]} />}>
+        <Suspense>
             <Canvas ref={canvasRef}>
                 <Stage />
                 <OrbitControls />
-                {state === 'liquid' && <LiquidState />}
-                {state === 'solid' && <SolidState />}
-                {state === 'gas' && <GasState />}
+                {state === StandardState.Liquid && <LiquidState />}
+                {state === StandardState.Solid && <SolidState />}
+                {state === StandardState.Gas && <GasState />}
             </Canvas>
         </Suspense>
     );
