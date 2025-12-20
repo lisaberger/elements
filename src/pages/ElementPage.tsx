@@ -86,11 +86,11 @@ function ElementPage() {
                         className="absolute top-8 left-1/2 transform -translate-x-1/2 p-2 bg-primary text-white rounded-lg z-5"
                         onClick={() => setPaused((prev) => !prev)}
                     >
+                        {paused ? t('startAnimation') : t('stopAnimation')}
                         <Icon
                             name={paused ? IconName.Play : IconName.Stop}
-                            className="inline-block"
+                            className="inline-block ml-2"
                         />
-                        {paused ? t('startAnimation') : t('stopAnimation')}
                     </button>
 
                     {/* Open Modal Button */}

@@ -20,9 +20,12 @@ export function Element({ position, texture, index }: ElementProps) {
     const boxColor = hovered ? '#CBC3FF' : '#FFF';
 
     useEffect(() => {
-        document.body.style.cursor = hovered
-            ? 'url(@/icons/cursor-hand.svg) 5 5, auto'
-            : 'url(@/icons/cursor-arrow.svg) 5 5, auto';
+        document.body.classList.toggle('cursor-hand', hovered);
+        document.body.classList.toggle('cursor-arrow', !hovered);
+
+        return () => {
+            document.body.classList.remove('cursor-hand', 'cursor-default');
+        };
     }, [hovered]);
 
     useEffect(() => {
