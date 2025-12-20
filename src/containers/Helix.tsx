@@ -4,13 +4,13 @@ import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 
 import type { Element as IElement } from '../types/Element.interface';
-import Element from '@/components/overview/Element';
+import { Element } from '@/components';
 
 interface HelixProps {
     elements: IElement[];
 }
 
-function Helix({ elements }: HelixProps) {
+export function Helix({ elements }: HelixProps) {
     const { camera } = useThree();
 
     const textures = useLoader(
@@ -43,5 +43,3 @@ function Helix({ elements }: HelixProps) {
 
     return <>{helixElements}</>;
 }
-
-export default Helix;

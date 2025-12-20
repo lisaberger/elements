@@ -4,13 +4,13 @@ import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 
 import type { Element as IElement } from '../types/Element.interface';
-import Element from '@/components/overview/Element';
+import { Element } from '@/components';
 
 interface TableProps {
     elements: IElement[];
 }
 
-function Table({ elements }: TableProps) {
+export function Table({ elements }: TableProps) {
     const { camera } = useThree();
 
     const textures = useLoader(
@@ -51,5 +51,3 @@ function Table({ elements }: TableProps) {
 
     return <>{tableElements}</>;
 }
-
-export default Table;

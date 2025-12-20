@@ -14,7 +14,7 @@ import {
 } from 'three';
 import { ImprovedNoise } from 'three/examples/jsm/Addons.js';
 
-function GasState() {
+export function GasState() {
     const gasSphere = useRef<Mesh>(null!);
     const gasMaterial = useRef<RawShaderMaterial>(null!);
 
@@ -97,8 +97,6 @@ function GasState() {
         </mesh>
     );
 }
-
-export default GasState;
 
 const vertex = /* glsl */ `
 in vec3 position;

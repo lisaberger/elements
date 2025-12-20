@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
 
-function SolidState() {
+export function SolidState() {
     const solidCube = useRef<Mesh>(null!);
 
     useFrame((state) => {
@@ -21,5 +21,3 @@ function SolidState() {
         </mesh>
     );
 }
-
-export default SolidState;

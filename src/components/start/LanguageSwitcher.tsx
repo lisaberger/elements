@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { supportedLanguages } from './config';
+import { supportedLanguages } from '../../i18n';
 
-export default function LocaleSwitcher() {
+export function LanguageSwitcher() {
     const { i18n } = useTranslation();
 
     return (

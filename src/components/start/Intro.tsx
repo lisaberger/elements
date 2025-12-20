@@ -1,14 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import Icon from '../_ui/Icon';
-import Button from '@/components/_ui/Button';
-import Logo from '@/components/_ui/Logo';
+import { Icon, Button, Logo } from '@/components';
 import { IconName } from '@/icons';
 import logo from '/logo/elements-rgb-wort-bild.svg';
 import { RouteName } from '@/router/route-name';
 
-function Intro() {
+export function Intro() {
     const navigate = useNavigate();
     const { t } = useTranslation();
 
@@ -29,5 +27,3 @@ function Intro() {
         </div>
     );
 }
-
-export default Intro;

@@ -12,7 +12,7 @@ interface ElementProps {
     index: number;
 }
 
-function Element({ position, texture, index }: ElementProps) {
+export function Element({ position, texture, index }: ElementProps) {
     const [hovered, setHovered] = useState(false);
     const boxRef = useRef<Mesh>(null!);
     const vector = useMemo(() => new Vector3(), []);
@@ -70,5 +70,3 @@ function Element({ position, texture, index }: ElementProps) {
         //         </RoundedBox>
     );
 }
-
-export default Element;

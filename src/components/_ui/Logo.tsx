@@ -37,7 +37,7 @@ const logoStyles = cva(
     },
 );
 
-const Logo = ({
+export function Logo({
     ref,
     src,
     size = 'medium',
@@ -45,7 +45,7 @@ const Logo = ({
     className,
     onClick,
     ...props
-}: LogoProps & { ref?: React.RefObject<HTMLImageElement | null> }) => {
+}: LogoProps & { ref?: React.RefObject<HTMLImageElement | null> }) {
     return (
         <img
             ref={ref}
@@ -60,6 +60,4 @@ const Logo = ({
             {...props}
         />
     );
-};
-
-export default Logo;
+}

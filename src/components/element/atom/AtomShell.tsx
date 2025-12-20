@@ -10,7 +10,7 @@ interface AtomShellProps {
     paused?: boolean;
 }
 
-function AtomShell({
+export function AtomShell({
     electronDistribution,
     baseRotationSpeed = 0.01,
     electronSpeed = 0.02,
@@ -116,5 +116,3 @@ function AtomShell({
         </group>
     );
 }
-
-export default AtomShell;

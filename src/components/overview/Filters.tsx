@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import Dropdown from '@/components/_ui/Drowdown';
+import { Dropdown } from '@/components';
 import {
     useAppDispatch,
     useAppSelector,
@@ -12,7 +12,7 @@ import {
 import { type Filter } from '@/types/Filter.interface';
 import { type FiltersKey } from '@/types/Filters.interface';
 
-function Filters() {
+export function Filters() {
     const { t } = useTranslation('filters');
 
     const dispatch = useAppDispatch();
@@ -62,5 +62,3 @@ function Filters() {
         </section>
     );
 }
-
-export default Filters;

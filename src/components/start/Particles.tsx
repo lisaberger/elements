@@ -11,7 +11,7 @@ interface ParticlesProps {
     count: number;
 }
 
-function Particles({ count }: ParticlesProps) {
+export function Particles({ count }: ParticlesProps) {
     const points = useRef<IPoints>(null!);
 
     // Create random initital particle positions
@@ -71,5 +71,3 @@ function Particles({ count }: ParticlesProps) {
         </Points>
     );
 }
-
-export default Particles;

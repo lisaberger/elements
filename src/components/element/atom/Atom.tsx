@@ -1,14 +1,14 @@
-import AtomCore from '@/components/element/atom/AtomCore';
-import AtomShell from '@/components/element/atom/AtomShell';
+import { AtomCore } from './AtomCore';
+import { AtomShell } from './AtomShell';
 import type { Element } from '@/types/Element.interface';
-import { determineAtomConfiguration } from '@/utils/determineAtomConfiguration';
+import { determineAtomConfiguration } from '@/utils';
 
 interface AtomProps {
     element: Element;
     state?: { paused: boolean };
 }
 
-function Atom({ element, state }: AtomProps) {
+export function Atom({ element, state }: AtomProps) {
     const atomConfiguration = determineAtomConfiguration(element);
 
     const atomicNumber = +element.atomicNumber;
@@ -31,5 +31,3 @@ function Atom({ element, state }: AtomProps) {
         </>
     );
 }
-
-export default Atom;

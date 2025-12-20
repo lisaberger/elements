@@ -33,7 +33,7 @@ const containerStyles = cva(
     'inline-flex border border-white/30 rounded-lg overflow-hidden bg-transparent',
 );
 
-const SelectButton = ({
+export function SelectButton({
     ref,
     options,
     initialValue,
@@ -41,7 +41,7 @@ const SelectButton = ({
     className,
     onChange,
     ...props
-}: SelectButtonProps & { ref?: React.RefObject<HTMLDivElement | null> }) => {
+}: SelectButtonProps & { ref?: React.RefObject<HTMLDivElement | null> }) {
     const [value, setValue] = useState(initialValue);
 
     const handleClick = (option: string) => {
@@ -66,6 +66,4 @@ const SelectButton = ({
             })}
         </div>
     );
-};
-
-export default SelectButton;
+}

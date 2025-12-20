@@ -1,0 +1,1 @@
+export { determineAtomConfiguration } from './determineAtomConfiguration';

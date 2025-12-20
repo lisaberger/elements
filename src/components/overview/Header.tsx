@@ -3,9 +3,7 @@ import { type HTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import SearchBar from '../_ui/Search';
-import Logo from '@/components/_ui/Logo';
-import SelectButton from '@/components/_ui/SelectButton';
+import { Logo, Search, SelectButton } from '@/components';
 import { RouteName } from '@/router/route-name';
 import { useAppDispatch, useAppSelector, setSearchQuery } from '@/store';
 import { ViewType } from '@/types/View.interface';
@@ -19,7 +17,7 @@ interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
 
 const VIEW_OPTIONS: ViewType[] = [ViewType.Helix, ViewType.Table];
 
-function Header({ onTypeChange }: HeaderProps) {
+export function Header({ onTypeChange }: HeaderProps) {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
@@ -32,7 +30,7 @@ function Header({ onTypeChange }: HeaderProps) {
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
             <Logo src={logo} onClick={() => void navigate(RouteName.Home)} />
 
-            <SearchBar
+            <Search
                 value={searchQuery}
                 placeholder={t('search')}
                 onChange={(value) => dispatch(setSearchQuery(value))}
@@ -48,5 +46,3 @@ function Header({ onTypeChange }: HeaderProps) {
         </header>
     );
 }
-
-export default Header;

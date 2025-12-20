@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh, Color } from 'three';
 
-function LiquidState() {
+export function LiquidState() {
     const liquidSphere = useRef<Mesh>(null!);
 
     useFrame((state) => {
@@ -33,8 +33,6 @@ function LiquidState() {
         </mesh>
     );
 }
-
-export default LiquidState;
 
 const fragment = `
 precision mediump float;

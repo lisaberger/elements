@@ -3,11 +3,8 @@ import { Suspense, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
-import Loader from '@/components/_ui/Loader';
-import Filters from '@/components/overview/Filters';
-import Header from '@/components/overview/Header';
-import Helix from '@/containers/Helix';
-import Table from '@/containers/Table';
+import { Loader, Filters, Header } from '@/components';
+import { Helix, Table } from '@/containers';
 import {
     useAppSelector,
     getElementsError,

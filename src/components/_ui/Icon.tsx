@@ -10,7 +10,7 @@ interface IconProps extends HTMLAttributes<SVGElement | HTMLImageElement> {
     color?: string;
 }
 
-function Icon({ name, size = 24, color, className, alt }: IconProps) {
+export function Icon({ name, size = 24, color, className, alt }: IconProps) {
     const icon = icons[name];
 
     if (!icon) return null;
@@ -31,5 +31,3 @@ function Icon({ name, size = 24, color, className, alt }: IconProps) {
         />
     );
 }
-
-export default Icon;

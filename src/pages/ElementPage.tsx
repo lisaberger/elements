@@ -5,18 +5,14 @@ import { Canvas } from '@react-three/fiber';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
-import Icon from '@/components/_ui/Icon';
-import Logo from '@/components/_ui/Logo';
-import Atom from '@/components/element/atom/Atom';
-import ElectronConfigModal from '@/components/element/ElementModal';
-import Info from '@/components/element/Info';
+import { Atom, ElementModal, Info, Icon, Logo } from '@/components';
 import { IconName } from '@/icons';
 import { RouteName } from '@/router';
 import { useAppSelector, selectElementByAtomicNumber } from '@/store';
 
 import logo from '/logo/elements-rgb-wort-bild.svg';
 
-const ElementPage = () => {
+function ElementPage() {
     const { id } = useParams();
     const { t } = useTranslation();
 
@@ -112,10 +108,10 @@ const ElementPage = () => {
                 </section>
             </main>
             {showModal && element && (
-                <ElectronConfigModal element={element} onClose={() => setShowModal(false)} />
+                <ElementModal element={element} onClose={() => setShowModal(false)} />
             )}
         </>
     );
-};
+}
 
 export default ElementPage;

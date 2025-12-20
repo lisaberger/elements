@@ -1,10 +1,8 @@
 import { Canvas } from '@react-three/fiber';
 
-import Intro from '@/components/start/Intro';
-import Particles from '@/components/start/Particles';
-import LanguageSwitcher from '@/i18n/LanguageSwitcher';
+import { Intro, LanguageSwitcher, Particles } from '@/components';
 
-const HomePage = () => {
+function HomePage() {
     return (
         <>
             <Canvas style={{ position: 'absolute' }}>
@@ -14,6 +12,6 @@ const HomePage = () => {
             <LanguageSwitcher />
         </>
     );
-};
+}
 
 export default HomePage;

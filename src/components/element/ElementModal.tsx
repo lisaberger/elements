@@ -1,11 +1,11 @@
 import { type Element } from '@/types/Element.interface';
 
-interface ElectronConfigModalProps {
+interface ElementModalProps {
     element: Element;
     onClose: () => void;
 }
 
-function ElectronConfigModal({ element, onClose }: ElectronConfigModalProps) {
+export function ElementModal({ element, onClose }: ElementModalProps) {
     const parseElectronConfiguration = () => {
         return element.electronicConfiguration
             .split(' ')
@@ -79,5 +79,3 @@ function ElectronConfigModal({ element, onClose }: ElectronConfigModalProps) {
         </div>
     );
 }
-
-export default ElectronConfigModal;

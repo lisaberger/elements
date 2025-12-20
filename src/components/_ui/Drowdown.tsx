@@ -17,7 +17,7 @@ export interface DropdownProps<T extends string = string> {
     disabled?: boolean;
 }
 
-const Dropdown = <T extends string>({
+export function Dropdown<T extends string>({
     options,
     value,
     onChange,
@@ -25,7 +25,7 @@ const Dropdown = <T extends string>({
     id,
     className,
     disabled = false,
-}: DropdownProps<T>) => {
+}: DropdownProps<T>) {
     const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
         onChange(event.target.value as T);
     };
@@ -54,6 +54,4 @@ const Dropdown = <T extends string>({
             ))}
         </select>
     );
-};
-
-export default Dropdown;
+}

@@ -8,7 +8,7 @@ interface AtomeCoreProps {
     nucleusNumber: number;
 }
 
-function AtomCore({ nucleusNumber }: AtomeCoreProps) {
+export function AtomCore({ nucleusNumber }: AtomeCoreProps) {
     return (
         <Suspense>
             <Physics timeStep="vary" gravity={[0, 0, 0]}>
@@ -68,5 +68,3 @@ function AtomCoreElement({
         </RigidBody>
     );
 }
-
-export default AtomCore;

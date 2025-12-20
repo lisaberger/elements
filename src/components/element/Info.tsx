@@ -1,11 +1,11 @@
-import StandardStates from '@/components/element/StandardStates';
+import { StandardStates } from './StandardStates';
 import type { Element } from '@/types/Element.interface';
 
 interface InfoProps {
     element: Element | null;
 }
 
-function Info({ element }: InfoProps) {
+export function Info({ element }: InfoProps) {
     return (
         element && (
             <div className="flex flex-col items-center text-white">
@@ -50,5 +50,3 @@ function Info({ element }: InfoProps) {
         )
     );
 }
-
-export default Info;

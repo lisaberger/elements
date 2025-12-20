@@ -1,6 +1,6 @@
 import { Html, useProgress } from '@react-three/drei';
 
-function Loader() {
+export function Loader() {
     const { progress } = useProgress();
 
     return (
@@ -9,5 +9,3 @@ function Loader() {
         </Html>
     );
 }
-
-export default Loader;

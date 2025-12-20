@@ -35,7 +35,7 @@ const buttonVariants = cva(
     },
 );
 
-const Button = ({
+export function Button({
     ref,
     className,
     variant,
@@ -44,7 +44,7 @@ const Button = ({
     disabled,
     children,
     ...props
-}: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) => {
+}: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) {
     return (
         <button
             ref={ref}
@@ -55,8 +55,4 @@ const Button = ({
             {isLoading ? <span className="animate-spin">⏳</span> : children}
         </button>
     );
-};
-
-Button.displayName = 'Button';
-
-export default Button;
+}
