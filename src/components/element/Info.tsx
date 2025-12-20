@@ -1,52 +1,52 @@
+import { useTranslation } from 'react-i18next';
+
+import { elementAttributeConfig, type ElementAttributeKey } from './element-attribute-config';
 import { StandardStates } from './StandardStates';
-import type { Element } from '@/types';
+import type { Element, StandardState } from '@/types';
 
 interface InfoProps {
     element: Element | null;
 }
 
 export function Info({ element }: InfoProps) {
+    const { t } = useTranslation('element');
+
+    if (!element) return null;
+
     return (
-        element && (
-            <div className="flex flex-col items-center text-white">
-                <div className="flex flex-col items-center">
-                    <p className="text-">{element.atomicNumber}</p>
-                    <h1 className="text-8xl line-height-1">{element.symbol}</h1>
-                    <h2 className="text-2xl mb-4 font-medium">{element.name}</h2>
-                </div>
+        <div className="flex flex-col items-center text-white">
+            <div className="text-center">
+                <p>{element.atomicNumber}</p>
+                <h1 className="text-8xl leading-none">{element.symbol}</h1>
+                <h2 className="text-2xl font-medium">{element.name}</h2>
+            </div>
 
-                <div className="p-4">
-                    <p className="text-base">
-                        <span>Group block: </span>
-                        <span>{element.groupBlock}</span>
-                    </p>
-                    <p className="text-base">
-                        <span>Bonding type: </span>
-                        <span>{element.bondingType}</span>
-                    </p>
-                    <p className="text-base">
-                        <span>Boiling point: </span>
-                        <span>{element.boilingPoint}</span>
-                    </p>
-                    <p className="text-base">
-                        <span>Electronegativity: </span>
-                        <span>{element.electronegativity}</span>
-                    </p>
-                    <p className="text-base">
-                        <span>Year discovered: </span>
-                        <span>{element.yearDiscovered}</span>
-                    </p>
-                </div>
+            <div className="mt-10">
+                {Object.entries(elementAttributeConfig).map(([key, { labelKey, unit }]) => {
+                    const typedKey = key as ElementAttributeKey;
+                    const value = element[typedKey];
 
-                <div>
-                    <StandardStates state={element.standardState as 'solid' | 'liquid' | 'gas'} />
-                </div>
+                    if (!value) return null;
 
-                <p className="text-base">
-                    <span>Standard state: </span>
+                    return (
+                        <p key={key}>
+                            <span className="font-medium">{t(labelKey)}: </span>
+                            {value}
+                            {unit && ` ${unit}`}
+                        </p>
+                    );
+                })}
+            </div>
+
+            <div className="mt-4">
+                <p>
+                    <StandardStates state={element.standardState as StandardState} />
+                </p>
+                <p className="mt-1">
+                    <span className="font-medium">{t('attributes.standardState')} </span>
                     {element.standardState}
                 </p>
             </div>
-        )
+        </div>
     );
 }

@@ -1,0 +1,13 @@
+{
+    "attributes": {
+        "atomicMass": "Atommasse",
+        "atomicRadius": "Atomradius",
+        "boilingPoint": "Siedepunkt",
+        "density": "Dichte",
+        "electronegativity": "Elektronegativität",
+        "bondingType": "Bindungstyp",
+        "groupBlock": "Gruppenblock",
+        "yearDiscovered": "Entdeckungsjahr",
+        "standardState": "Standardzustand"
+    }
+}
