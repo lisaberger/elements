@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
 import Dropdown from '@/components/_ui/Drowdown';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
+    useAppDispatch,
+    useAppSelector,
     filterOptions,
     selectFilters,
     updateFilter,
     resetFilters,
-} from '@/store/slices/filtersSlice';
+} from '@/store';
 import { type Filter } from '@/types/Filter.interface';
 import { type FiltersKey } from '@/types/Filters.interface';
 

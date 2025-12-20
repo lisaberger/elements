@@ -3,9 +3,8 @@ import { Suspense, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router';
 
-import router from '@/router/router';
-import { fetchElements } from '@/store/slices/elementsSlice';
-import { store } from '@/store/store';
+import { router } from '@/router';
+import { fetchElements, store } from '@/store';
 
 function App() {
     useEffect(() => {

@@ -28,7 +28,7 @@ i18n.use(initReactI18next)
 
         // Enables useful output in the browser’s
         // dev console.
-        debug: true,
+        debug: import.meta.env.MODE === 'development',
 
         // Normally, we want `escapeValue: true` as it
         // ensures that i18next escapes any code in

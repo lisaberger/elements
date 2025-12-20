@@ -8,12 +8,12 @@ import Filters from '@/components/overview/Filters';
 import Header from '@/components/overview/Header';
 import Helix from '@/containers/Helix';
 import Table from '@/containers/Table';
-import { useAppSelector } from '@/store/hooks';
 import {
+    useAppSelector,
     getElementsError,
     getElementsStatus,
     searchedAndFilteredElements,
-} from '@/store/slices/elementsSlice';
+} from '@/store';
 import { ViewType } from '@/types/View.interface';
 
 const OverviewPage = () => {

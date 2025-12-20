@@ -6,13 +6,14 @@ import Button from '@/components/_ui/Button';
 import Logo from '@/components/_ui/Logo';
 import { IconName } from '@/icons';
 import logo from '/logo/elements-rgb-wort-bild.svg';
+import { RouteName } from '@/router/route-name';
 
 function Intro() {
     const navigate = useNavigate();
     const { t } = useTranslation();
 
     const handleAppStart = () => {
-        void navigate('/all');
+        void navigate(RouteName.Overview);
     };
 
     return (

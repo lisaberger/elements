@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
 import Icon from '@/components/_ui/Icon';
 import Logo from '@/components/_ui/Logo';
@@ -11,8 +11,8 @@ import Atom from '@/components/element/atom/Atom';
 import ElectronConfigModal from '@/components/element/ElementModal';
 import Info from '@/components/element/Info';
 import { IconName } from '@/icons';
-import { useAppSelector } from '@/store/hooks';
-import { selectElementByAtomicNumber } from '@/store/slices/elementsSlice';
+import { RouteName } from '@/router';
+import { useAppSelector, selectElementByAtomicNumber } from '@/store';
 
 import logo from '/logo/elements-rgb-wort-bild.svg';
 
@@ -33,14 +33,14 @@ const ElementPage = () => {
     const navigate = useNavigate();
 
     const returnHandler = () => {
-        void navigate('/all');
+        void navigate(RouteName.Overview);
     };
 
     const onArrowClickHandler = (direction: string): void => {
         if (direction === 'left') {
-            void navigate(`/element/${Number(id) - 1}`);
+            void navigate(generatePath(RouteName.Element, { id: `${Number(id) - 1}` }));
         } else {
-            void navigate(`/element/${Number(id) + 1}`);
+            void navigate(generatePath(RouteName.Element, { id: `${Number(id) + 1}` }));
         }
     };
 

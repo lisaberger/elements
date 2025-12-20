@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import SearchBar from '../_ui/Search';
 import Logo from '@/components/_ui/Logo';
 import SelectButton from '@/components/_ui/SelectButton';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setSearchQuery } from '@/store/slices/searchSlice';
+import { RouteName } from '@/router/route-name';
+import { useAppDispatch, useAppSelector, setSearchQuery } from '@/store';
 import { ViewType } from '@/types/View.interface';
 
 import logo from '/logo/elements-rgb-wort-bild.svg';
@@ -30,7 +30,7 @@ function Header({ onTypeChange }: HeaderProps) {
 
     return (
         <header className="p-4 md:px-8 flex justify-between w-full absolute z-5">
-            <Logo src={logo} onClick={() => void navigate('/')} />
+            <Logo src={logo} onClick={() => void navigate(RouteName.Home)} />
 
             <SearchBar
                 value={searchQuery}

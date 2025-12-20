@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, generatePath } from 'react-router-dom';
 import { Vector3, Texture, type Mesh } from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/Addons.js';
+
+import { RouteName } from '@/router';
 
 interface ElementProps {
     position: Vector3;
@@ -31,7 +33,7 @@ function Element({ position, texture, index }: ElementProps) {
     const navigate = useNavigate();
 
     const onClickHandler = (): void => {
-        void navigate(`/element/${index}`);
+        void navigate(generatePath(RouteName.Element, { id: String(index) }));
     };
 
     const geometryBox = new RoundedBoxGeometry(1, 1, 1, 10, 0.1);

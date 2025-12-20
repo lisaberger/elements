@@ -1,11 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import {
-    uniqueBondingTypes,
-    uniqueGroupBlocks,
-    uniqueStandardStates,
-} from '@/store/slices/elementsSlice';
-import { type RootState } from '@/store/store';
+import { type RootState } from '../store';
+import { uniqueBondingTypes, uniqueGroupBlocks, uniqueStandardStates } from './elementsSlice';
 import { type FiltersKey } from '@/types/Filters.interface';
 
 export interface FiltersState {

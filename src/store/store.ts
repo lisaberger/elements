@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import elementsReducer from '@/store/slices/elementsSlice';
-import filtersReducer from '@/store/slices/filtersSlice';
-import searchReducer from '@/store/slices/searchSlice';
+import elementsReducer from './slices/elementsSlice';
+import filtersReducer from './slices/filtersSlice';
+import searchReducer from './slices/searchSlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,7 +10,7 @@ export const store = configureStore({
         filters: filtersReducer,
         search: searchReducer,
     },
-    devTools: true,
+    devTools: import.meta.env.MODE === 'development',
 });
 
 export type AppDispatch = typeof store.dispatch;
