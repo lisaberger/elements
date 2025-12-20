@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes } from 'react';
+import { type ButtonHTMLAttributes, type RefObject } from 'react';
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import clsx from 'clsx';
@@ -44,7 +44,7 @@ export function Button({
     disabled,
     children,
     ...props
-}: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) {
+}: ButtonProps & { ref?: RefObject<HTMLButtonElement | null> }) {
     return (
         <button
             ref={ref}

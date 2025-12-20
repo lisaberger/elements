@@ -1,4 +1,4 @@
-import { type ImgHTMLAttributes } from 'react';
+import { type ImgHTMLAttributes, type RefObject } from 'react';
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import clsx from 'clsx';
@@ -45,7 +45,7 @@ export function Logo({
     className,
     onClick,
     ...props
-}: LogoProps & { ref?: React.RefObject<HTMLImageElement | null> }) {
+}: LogoProps & { ref?: RefObject<HTMLImageElement | null> }) {
     return (
         <img
             ref={ref}

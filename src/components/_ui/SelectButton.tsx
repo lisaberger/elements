@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type RefObject } from 'react';
 
 import { cva } from 'class-variance-authority';
 import clsx from 'clsx';
@@ -41,10 +41,10 @@ export function SelectButton({
     className,
     onChange,
     ...props
-}: SelectButtonProps & { ref?: React.RefObject<HTMLDivElement | null> }) {
+}: SelectButtonProps & { ref?: RefObject<HTMLDivElement | null> }) {
     const [value, setValue] = useState(initialValue);
 
-    const handleClick = (option: string) => {
+    const handleClick = (option: string): void => {
         setValue(option);
         onChange?.(option);
     };

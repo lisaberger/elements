@@ -13,11 +13,11 @@ interface SearchBarProps {
 }
 
 export function Search({ value, onChange, placeholder = 'Search…', className }: SearchBarProps) {
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         onChange(event.target.value);
     };
 
-    const handleSearchClick = () => {
+    const handleSearchClick = (): void => {
         onChange(value);
     };
 

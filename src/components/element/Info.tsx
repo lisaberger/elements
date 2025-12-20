@@ -1,5 +1,5 @@
 import { StandardStates } from './StandardStates';
-import type { Element } from '@/types/element';
+import type { Element } from '@/types';
 
 interface InfoProps {
     element: Element | null;
