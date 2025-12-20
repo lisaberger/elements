@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { selectSearchQuery } from './searchSlice';
 import { type RootState } from '../store';
-import { type Element } from '@/types/Element.interface';
+import { type Element } from '@/types';
 
 interface ElementState {
     elements: Element[];

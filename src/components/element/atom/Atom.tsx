@@ -1,6 +1,6 @@
 import { AtomCore } from './AtomCore';
 import { AtomShell } from './AtomShell';
-import type { Element } from '@/types/Element.interface';
+import type { Element } from '@/types';
 import { determineAtomConfiguration } from '@/utils';
 
 interface AtomProps {

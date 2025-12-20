@@ -1,4 +1,4 @@
-import { type Element } from '@/types/Element.interface';
+import { type Element } from '@/types';
 
 interface ElementModalProps {
     element: Element;

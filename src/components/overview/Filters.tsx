@@ -9,8 +9,7 @@ import {
     updateFilter,
     resetFilters,
 } from '@/store';
-import { type Filter } from '@/types/Filter.interface';
-import { type FiltersKey } from '@/types/Filters.interface';
+import { type Filter, type FiltersKey } from '@/types';
 
 export function Filters() {
     const { t } = useTranslation('filters');

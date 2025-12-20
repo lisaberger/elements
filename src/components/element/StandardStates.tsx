@@ -3,9 +3,7 @@ import { Suspense, useEffect, useRef } from 'react';
 import { OrbitControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
-import { GasState } from './states/GasState';
-import { LiquidState } from './states/LiquidState';
-import { SolidState } from './states/SolidState';
+import { GasState, LiquidState, SolidState } from './states';
 
 interface StandardStatesProps {
     state: 'solid' | 'gas' | 'liquid';

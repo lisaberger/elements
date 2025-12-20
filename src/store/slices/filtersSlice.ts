@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { type RootState } from '../store';
 import { uniqueBondingTypes, uniqueGroupBlocks, uniqueStandardStates } from './elementsSlice';
-import { type FiltersKey } from '@/types/Filters.interface';
+import { type FiltersKey } from '@/types';
 
 export interface FiltersState {
     groupBlock: string;

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Logo, Search, SelectButton } from '@/components';
 import { RouteName } from '@/router/route-name';
 import { useAppDispatch, useAppSelector, setSearchQuery } from '@/store';
-import { ViewType } from '@/types/View.interface';
+import { ViewType } from '@/types';
 
 import logo from '/logo/elements-rgb-wort-bild.svg';
 

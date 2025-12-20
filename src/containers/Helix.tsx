@@ -3,8 +3,8 @@ import { type JSX, useMemo } from 'react';
 import { useThree, useLoader } from '@react-three/fiber';
 import { TextureLoader, Vector3 } from 'three';
 
-import type { Element as IElement } from '../types/Element.interface';
 import { Element } from '@/components';
+import type { Element as IElement } from '@/types';
 
 interface HelixProps {
     elements: IElement[];

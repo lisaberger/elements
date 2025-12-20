@@ -1,4 +1,4 @@
-import { type Element } from '../types/Element.interface';
+import { type Element } from '@/types';
 
 /**
  * Determines the electron distribution in different shells based on the given element's electronic configuration.

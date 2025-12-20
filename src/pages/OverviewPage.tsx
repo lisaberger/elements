@@ -11,7 +11,7 @@ import {
     getElementsStatus,
     searchedAndFilteredElements,
 } from '@/store';
-import { ViewType } from '@/types/View.interface';
+import { ViewType } from '@/types';
 
 const OverviewPage = () => {
     const [type, setType] = useState<ViewType>(ViewType.Helix);

@@ -1,4 +1,4 @@
-interface Element {
+export interface Element {
     atomicMass: string;
     atomicNumber: string;
     atomicRadius: string;
@@ -20,5 +20,3 @@ interface Element {
     vanDelWaalsRadius: string;
     yearDiscovered: string;
 }
-
-export type { Element };
